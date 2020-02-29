@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portal.procucev.customexception.AppException;
 import com.portal.procucev.model.Organization;
+import com.portal.procucev.model.VendorCertificate;
 import com.portal.procucev.model.VendorClientReference;
+import com.portal.procucev.model.VendorDocument;
 import com.portal.procucev.service.VendorService;
 import com.portal.procucev.utils.ApplicationConstants;
 
@@ -69,12 +71,20 @@ public class VendorController {
 
 			}
 			if (type.equals("Documents")) {
-				newVendor.getDocuments().get(0).setFileName(inputfile.getOriginalFilename());
-				newVendor.getDocuments().get(0).setFile(inputfile.getBytes());
+				List<VendorDocument> clentList = new ArrayList<VendorDocument>();
+				VendorDocument ref = new VendorDocument();
+				ref.setFileName(inputfile.getOriginalFilename());
+				ref.setFile(inputfile.getBytes());
+				clentList.add(ref);
+				newVendor.setDocuments(clentList);
 			}
 			if (type.equals("Vendor Certificates")) {
-				newVendor.getCertificates().get(0).setFileName(inputfile.getOriginalFilename());
-				newVendor.getCertificates().get(0).setFile(inputfile.getBytes());
+				List<VendorCertificate> clentList = new ArrayList<VendorCertificate>();
+				VendorCertificate ref = new VendorCertificate();
+				ref.setFileName(inputfile.getOriginalFilename());
+				ref.setFile(inputfile.getBytes());
+				clentList.add(ref);
+				newVendor.setCertificates(clentList);
 			}
 		}
 		boolean status = vendorService.userRegistration(newVendor);
