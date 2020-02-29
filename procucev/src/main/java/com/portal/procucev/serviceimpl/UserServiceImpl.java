@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	@Autowired
 	private UserDao userDao;
 
+	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(userId);
 		if (user == null) {
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
 
+	@Override
 	public List<User> findAll() {
 		List<User> list = new ArrayList<>();
 		userDao.findAll().iterator().forEachRemaining(list::add);
