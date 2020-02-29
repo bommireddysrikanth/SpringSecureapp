@@ -1,34 +1,41 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_certificates database table.
  * 
  */
 @Entity
-@Table(name="vendor_certificates")
-@NamedQuery(name="VendorCertificate.findAll", query="SELECT v FROM VendorCertificate v")
-public class VendorCertificate implements Serializable {
+@Table(name = "vendor_certificates")
+public class VendorCertificate extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_certificates_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_certificates_id")
 	private int vendorCertificatesId;
 
-	@Column(name="certificate_type")
+	@Column(name = "certificate_type")
 	private String certificateType;
+
+	@Column(name = "file_name")
+	private String fileName;
 
 	@Lob
 	private byte[] file;
 
-	@Column(name="organization_id")
-	private int organizationId;
-
 	public VendorCertificate() {
+		super();
 	}
 
 	public int getVendorCertificatesId() {
@@ -55,12 +62,11 @@ public class VendorCertificate implements Serializable {
 		this.file = file;
 	}
 
-	public int getOrganizationId() {
-		return this.organizationId;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-
 }

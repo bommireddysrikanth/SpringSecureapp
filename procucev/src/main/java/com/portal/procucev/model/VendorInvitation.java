@@ -1,37 +1,39 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_invitation database table.
  * 
  */
 @Entity
-@Table(name="vendor_invitation")
-@NamedQuery(name="VendorInvitation.findAll", query="SELECT v FROM VendorInvitation v")
-public class VendorInvitation implements Serializable {
+@Table(name = "vendor_invitation")
+public class VendorInvitation extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_invitation_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_invitation_id")
 	private int vendorInvitationId;
 
-	@Column(name="`invitation sent_by`")
+	@Column(name = "`invitation sent_by`")
 	private String invitation_sentBy;
 
-	@Column(name="invitation_user_id")
+	@Column(name = "invitation_user_id")
 	private String invitationUserId;
 
-	@Column(name="link_expary_ts")
+	@Column(name = "link_expary_ts")
 	private String linkExparyTs;
 
 	private String status;
-
-	public VendorInvitation() {
-	}
 
 	public int getVendorInvitationId() {
 		return this.vendorInvitationId;

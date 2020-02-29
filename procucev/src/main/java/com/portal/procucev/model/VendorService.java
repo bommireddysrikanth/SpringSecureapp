@@ -1,48 +1,48 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_services database table.
  * 
  */
 @Entity
-@Table(name="vendor_services")
-@NamedQuery(name="VendorService.findAll", query="SELECT v FROM VendorService v")
-public class VendorService implements Serializable {
+@Table(name = "vendor_services")
+public class VendorService extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_services_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_services_id")
 	private int vendorServicesId;
 
 	private String description;
 
-	@Column(name="major_catagory_id")
+	@Column(name = "major_catagory_id")
 	private int majorCatagoryId;
 
-	@Column(name="minor_catagory_id")
+	@Column(name = "minor_catagory_id")
 	private String minorCatagoryId;
-
-	@Column(name="organization_id")
-	private int organizationId;
 
 	private String other;
 
-	@Column(name="product_name")
+	@Column(name = "product_name")
 	private String productName;
 
-	@Column(name="sac_code")
+	@Column(name = "sac_code")
 	private int sacCode;
 
-	@Column(name="sub_catagory_id")
+	@Column(name = "sub_catagory_id")
 	private int subCatagoryId;
-
-	public VendorService() {
-	}
 
 	public int getVendorServicesId() {
 		return this.vendorServicesId;
@@ -74,14 +74,6 @@ public class VendorService implements Serializable {
 
 	public void setMinorCatagoryId(String minorCatagoryId) {
 		this.minorCatagoryId = minorCatagoryId;
-	}
-
-	public int getOrganizationId() {
-		return this.organizationId;
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
 	}
 
 	public String getOther() {

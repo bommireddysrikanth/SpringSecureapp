@@ -1,36 +1,39 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_documents database table.
  * 
  */
 @Entity
-@Table(name="vendor_documents")
-@NamedQuery(name="VendorDocument.findAll", query="SELECT v FROM VendorDocument v")
-public class VendorDocument implements Serializable {
+@Table(name = "vendor_documents")
+public class VendorDocument extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_documents_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_documents_id")
 	private int vendorDocumentsId;
 
-	@Column(name="organization_id")
-	private int organizationId;
+	@Column(name = "file_name")
+	private String fileName;
 
 	@Lob
-	@Column(name="vendor_document")
-	private byte[] vendorDocument;
+	@Column(name = "vendor_document")
+	private byte[] file;
 
-	@Column(name="vendor_document_types")
+	@Column(name = "vendor_document_types")
 	private String vendorDocumentTypes;
-
-	public VendorDocument() {
-	}
 
 	public int getVendorDocumentsId() {
 		return this.vendorDocumentsId;
@@ -40,28 +43,27 @@ public class VendorDocument implements Serializable {
 		this.vendorDocumentsId = vendorDocumentsId;
 	}
 
-	public int getOrganizationId() {
-		return this.organizationId;
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
-	}
-
-	public byte[] getVendorDocument() {
-		return this.vendorDocument;
-	}
-
-	public void setVendorDocument(byte[] vendorDocument) {
-		this.vendorDocument = vendorDocument;
-	}
-
 	public String getVendorDocumentTypes() {
 		return this.vendorDocumentTypes;
+	}
+
+	public byte[] getFile() {
+		return file;
+	}
+
+	public void setFile(byte[] file) {
+		this.file = file;
 	}
 
 	public void setVendorDocumentTypes(String vendorDocumentTypes) {
 		this.vendorDocumentTypes = vendorDocumentTypes;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 }

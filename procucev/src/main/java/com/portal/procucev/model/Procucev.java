@@ -28,6 +28,10 @@ public class Procucev implements Serializable {
 	@UpdateTimestamp
 	private Date lastModifiedTS;
 
+	public Procucev() {
+		super();
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}

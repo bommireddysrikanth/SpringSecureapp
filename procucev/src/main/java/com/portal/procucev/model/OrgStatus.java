@@ -1,36 +1,37 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the org_status database table.
  * 
  */
 @Entity
-@Table(name="org_status")
-@NamedQuery(name="OrgStatus.findAll", query="SELECT o FROM OrgStatus o")
-public class OrgStatus implements Serializable {
+@Table(name = "org_status")
+public class OrgStatus extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="org_status_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "org_status_id")
 	private int orgStatusId;
 
-	@Column(name="org_type_id")
+	@Column(name = "org_type_id")
 	private int orgTypeId;
 
-	@Column(name="status_type")
+	@Column(name = "status_type")
 	private String statusType;
 
-	//bi-directional many-to-one association to Organization
-	@OneToMany(mappedBy="orgStatus")
-	private List<Organization> organizations;
-
 	public OrgStatus() {
+		super();
 	}
 
 	public int getOrgStatusId() {
@@ -55,28 +56,6 @@ public class OrgStatus implements Serializable {
 
 	public void setStatusType(String statusType) {
 		this.statusType = statusType;
-	}
-
-	public List<Organization> getOrganizations() {
-		return this.organizations;
-	}
-
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
-	}
-
-	public Organization addOrganization(Organization organization) {
-		getOrganizations().add(organization);
-		organization.setOrgStatus(this);
-
-		return organization;
-	}
-
-	public Organization removeOrganization(Organization organization) {
-		getOrganizations().remove(organization);
-		organization.setOrgStatus(null);
-
-		return organization;
 	}
 
 }

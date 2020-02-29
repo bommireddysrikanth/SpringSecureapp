@@ -11,6 +11,15 @@ public class AppException extends RuntimeException {
 	private String errorMessage;
 	private String exceptiontype;
 	private String status;
+	private String statusCode;
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
 
 	public int getErrorCode() {
 		return errorCode;
@@ -48,6 +57,14 @@ public class AppException extends RuntimeException {
 		super();
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
+		this.exceptiontype = exceptiontype;
+		this.status = status;
+	}
+
+	public AppException(String statusCode, String msg, String exceptiontype, String status) {
+		super();
+		this.statusCode = statusCode;
+		this.errorMessage = msg;
 		this.exceptiontype = exceptiontype;
 		this.status = status;
 	}

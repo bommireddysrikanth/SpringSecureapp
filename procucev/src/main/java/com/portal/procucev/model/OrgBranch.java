@@ -1,38 +1,34 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the org_branches database table.
  * 
  */
 @Entity
-@Table(name="org_branches")
-@NamedQuery(name="OrgBranch.findAll", query="SELECT o FROM OrgBranch o")
-public class OrgBranch implements Serializable {
+@Table(name = "org_branches")
+public class OrgBranch extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="org_branches_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "org_branches_id")
 	private int orgBranchesId;
 
-	@Column(name="bank_name")
+	@Column(name = "bank_name")
 	private String bankName;
 
-	//bi-directional many-to-one association to Address
-	@ManyToOne
-	@JoinColumn(name="address_id")
-	private Address address;
-
-	//bi-directional many-to-one association to Organization
-	@ManyToOne
-	@JoinColumn(name="organization_id")
-	private Organization organization;
-
 	public OrgBranch() {
+		super();
 	}
 
 	public int getOrgBranchesId() {
@@ -49,22 +45,6 @@ public class OrgBranch implements Serializable {
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
-	}
-
-	public Address getAddress() {
-		return this.address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public Organization getOrganization() {
-		return this.organization;
-	}
-
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
 	}
 
 }

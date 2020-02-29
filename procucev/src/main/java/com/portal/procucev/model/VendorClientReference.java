@@ -1,61 +1,68 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_client_references database table.
  * 
  */
 @Entity
-@Table(name="vendor_client_references")
-@NamedQuery(name="VendorClientReference.findAll", query="SELECT v FROM VendorClientReference v")
-public class VendorClientReference implements Serializable {
+@Table(name = "vendor_client_references")
+public class VendorClientReference extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_client_references_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_client_references_id")
 	private int vendorClientReferencesId;
 
-	@Column(name="business_provided_ts")
+	@Column(name = "business_provided_ts")
 	private String businessProvidedTs;
 
-	@Column(name="ciient_poc_email")
+	@Column(name = "ciient_poc_email")
 	private String ciientPocEmail;
 
-	@Column(name="client_email")
+	@Column(name = "client_email")
 	private String clientEmail;
 
-	@Column(name="client_name")
+	@Column(name = "client_name")
 	private String clientName;
 
-	@Column(name="client_org_id")
+	@Column(name = "client_org_id")
 	private String clientOrgId;
 
-	@Column(name="client_poc")
+	@Column(name = "client_poc")
 	private String clientPoc;
 
-	@Column(name="client_poc_name")
+	@Column(name = "client_poc_name")
 	private String clientPocName;
 
-	@Column(name="client_poc_phonenumber")
+	@Column(name = "client_poc_phonenumber")
 	private String clientPocPhonenumber;
+
+	@Column(name = "file_name")
+	private String fileName;
 
 	@Lob
 	private byte[] file;
 
-	@Column(name="organization_id")
-	private int organizationId;
-
-	@Column(name="reference_ts")
+	@Column(name = "reference_ts")
 	private String referenceTs;
 
-	@Column(name="refernce_comments")
+	@Column(name = "refernce_comments")
 	private String refernceComments;
 
 	public VendorClientReference() {
+		super();
 	}
 
 	public int getVendorClientReferencesId() {
@@ -138,14 +145,6 @@ public class VendorClientReference implements Serializable {
 		this.file = file;
 	}
 
-	public int getOrganizationId() {
-		return this.organizationId;
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
-	}
-
 	public String getReferenceTs() {
 		return this.referenceTs;
 	}
@@ -160,6 +159,14 @@ public class VendorClientReference implements Serializable {
 
 	public void setRefernceComments(String refernceComments) {
 		this.refernceComments = refernceComments;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 }

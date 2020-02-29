@@ -1,44 +1,45 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the poc database table.
  * 
  */
 @Entity
-@Table(name="poc")
-@NamedQuery(name="Poc.findAll", query="SELECT p FROM Poc p")
-public class Poc implements Serializable {
+@Table(name = "poc")
+public class Poc extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="poc_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "poc_id")
 	private int pocId;
 
-	@Column(name="address_id")
+	@Column(name = "address_id")
 	private int addressId;
 
 	private String email;
 
-	@Column(name="phone_number")
+	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@Column(name="poc_first_name")
+	@Column(name = "poc_first_name")
 	private String pocFirstName;
 
-	@Column(name="poc_second_name")
+	@Column(name = "poc_second_name")
 	private String pocSecondName;
 
-	//bi-directional many-to-one association to Organization
-	@OneToMany(mappedBy="poc")
-	private List<Organization> organizations;
-
 	public Poc() {
+		super();
 	}
 
 	public int getPocId() {
@@ -87,28 +88,6 @@ public class Poc implements Serializable {
 
 	public void setPocSecondName(String pocSecondName) {
 		this.pocSecondName = pocSecondName;
-	}
-
-	public List<Organization> getOrganizations() {
-		return this.organizations;
-	}
-
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
-	}
-
-	public Organization addOrganization(Organization organization) {
-		getOrganizations().add(organization);
-		organization.setPoc(this);
-
-		return organization;
-	}
-
-	public Organization removeOrganization(Organization organization) {
-		getOrganizations().remove(organization);
-		organization.setPoc(null);
-
-		return organization;
 	}
 
 }

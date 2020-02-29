@@ -1,31 +1,37 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_category_matrix database table.
  * 
  */
 @Entity
-@Table(name="vendor_category_matrix")
-@NamedQuery(name="VendorCategoryMatrix.findAll", query="SELECT v FROM VendorCategoryMatrix v")
-public class VendorCategoryMatrix implements Serializable {
+@Table(name = "vendor_category_matrix")
+public class VendorCategoryMatrix extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_category_matrix_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_category_matrix_id")
 	private int vendorCategoryMatrixId;
 
-	@Column(name="vendor_category_master_id")
+	@Column(name = "vendor_category_master_id")
 	private int vendorCategoryMasterId;
 
-	@Column(name="vendor_org_id")
+	@Column(name = "vendor_org_id")
 	private int vendorOrgId;
 
 	public VendorCategoryMatrix() {
+		super();
 	}
 
 	public int getVendorCategoryMatrixId() {

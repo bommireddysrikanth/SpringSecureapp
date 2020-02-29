@@ -1,34 +1,33 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the vendor_product database table.
  * 
  */
 @Entity
-@Table(name="vendor_product")
-@NamedQuery(name="VendorProduct.findAll", query="SELECT v FROM VendorProduct v")
-public class VendorProduct implements Serializable {
+@Table(name = "vendor_product")
+public class VendorProduct extends Procucev implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendor_product_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendor_product_id")
 	private int vendorProductId;
 
 	private String description;
 
-	@Column(name="hsn_code")
+	@Column(name = "hsn_code")
 	private int hsnCode;
-
-	@Column(name="organization_id")
-	private int organizationId;
-
-	public VendorProduct() {
-	}
 
 	public int getVendorProductId() {
 		return this.vendorProductId;
@@ -52,14 +51,6 @@ public class VendorProduct implements Serializable {
 
 	public void setHsnCode(int hsnCode) {
 		this.hsnCode = hsnCode;
-	}
-
-	public int getOrganizationId() {
-		return this.organizationId;
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
 	}
 
 }

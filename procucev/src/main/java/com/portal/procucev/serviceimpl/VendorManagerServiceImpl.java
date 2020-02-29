@@ -92,8 +92,7 @@ public class VendorManagerServiceImpl implements VendorManagerService {
 
 	@Override
 	public void getAllQueriesOfVendor(int orgId) {
-		
-		
+
 	}
 
 }

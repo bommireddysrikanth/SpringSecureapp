@@ -1,39 +1,39 @@
 package com.portal.procucev.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the org_bank_details database table.
  * 
  */
 @Entity
-@Table(name="org_bank_details")
-@NamedQuery(name="OrgBankDetail.findAll", query="SELECT o FROM OrgBankDetail o")
-public class OrgBankDetail implements Serializable {
+@Table(name = "org_bank_details")
+public class OrgBankDetail extends Procucev implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="org_bank_details_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "org_bank_details_id")
 	private int orgBankDetailsId;
 
-	@Column(name="account_number")
+	@Column(name = "account_number")
 	private String accountNumber;
 
-	@Column(name="address_id")
+	@Column(name = "address_id")
 	private int addressId;
 
-	@Column(name="bank_name")
+	@Column(name = "bank_name")
 	private String bankName;
 
-	//bi-directional many-to-one association to Organization
-	@ManyToOne
-	@JoinColumn(name="orgination_id")
-	private Organization organization;
-
 	public OrgBankDetail() {
+		super();
 	}
 
 	public int getOrgBankDetailsId() {
@@ -66,14 +66,6 @@ public class OrgBankDetail implements Serializable {
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
-	}
-
-	public Organization getOrganization() {
-		return this.organization;
-	}
-
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
 	}
 
 }
