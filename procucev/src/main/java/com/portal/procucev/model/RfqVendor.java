@@ -111,4 +111,12 @@ public class RfqVendor implements Serializable {
 		this.sentUserId = sentUserId;
 	}
 
+	public int getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(int orgId) {
+		this.orgId = orgId;
+	}
+
 }

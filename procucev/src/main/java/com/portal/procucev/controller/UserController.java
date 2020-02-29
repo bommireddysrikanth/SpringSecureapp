@@ -1,3 +1,4 @@
+
 package com.portal.procucev.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.portal.procucev.service.UserService;
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/rest/users")
 public class UserController {
 

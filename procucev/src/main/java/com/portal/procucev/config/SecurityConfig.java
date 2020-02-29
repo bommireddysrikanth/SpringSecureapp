@@ -1,3 +1,4 @@
+
 package com.portal.procucev.config;
 
 import javax.annotation.Resource;
@@ -22,7 +23,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
+
 @EnableWebSecurity
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -30,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 
 	@Override
+
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();

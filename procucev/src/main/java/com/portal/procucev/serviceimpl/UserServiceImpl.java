@@ -1,3 +1,4 @@
+
 package com.portal.procucev.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword_require_current(),
-				getAuthority());
+		return new org.springframework.security.core.userdetails.User(user.getUsername(),
+				user.getPassword(), getAuthority());
 	}
 
 	private List<SimpleGrantedAuthority> getAuthority() {

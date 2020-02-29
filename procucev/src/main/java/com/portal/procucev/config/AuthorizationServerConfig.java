@@ -1,3 +1,4 @@
+
 package com.portal.procucev.config;
 
 import javax.sql.DataSource;
@@ -15,6 +16,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 @Configuration
+
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
