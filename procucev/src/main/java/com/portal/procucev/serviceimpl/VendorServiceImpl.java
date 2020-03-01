@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.portal.procucev.customexception.AppException;
@@ -14,6 +15,7 @@ import com.portal.procucev.model.Organization;
 import com.portal.procucev.service.VendorService;
 import com.portal.procucev.utils.ApplicationConstants;
 
+@Service
 public class VendorServiceImpl implements VendorService {
 	@Autowired
 	VendorDao vendorDao;

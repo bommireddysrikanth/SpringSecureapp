@@ -1,12 +1,12 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "org_bank_details")
-public class OrgBankDetail extends Procucev implements Serializable {
+public class OrgBankDetail extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,8 +26,9 @@ public class OrgBankDetail extends Procucev implements Serializable {
 	@Column(name = "account_number")
 	private String accountNumber;
 
-	@Column(name = "address_id")
-	private int addressId;
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address addressId;
 
 	@Column(name = "bank_name")
 	private String bankName;
@@ -52,20 +53,20 @@ public class OrgBankDetail extends Procucev implements Serializable {
 		this.accountNumber = accountNumber;
 	}
 
-	public int getAddressId() {
-		return this.addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
-
 	public String getBankName() {
 		return this.bankName;
 	}
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
+	}
+
+	public Address getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Address addressId) {
+		this.addressId = addressId;
 	}
 
 }

@@ -1,38 +1,41 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Set;
 
+import javax.persistence.*;
 
 /**
  * The persistent class for the qoutation database table.
  * 
  */
 @Entity
-@Table(name="qoutation")
-@NamedQuery(name="Qoutation.findAll", query="SELECT q FROM Qoutation q")
-public class Qoutation implements Serializable {
+@Table(name = "quotation")
+public class Quotation extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="qoutation_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "qoutation_id")
 	private int qoutationId;
 
 	private String amount;
-	
-	@Column(name="org_id")
-	private int orgId;
 
-	@Column(name="quotation_iteam_id")
+	@Column(name = "org_id")
+	private Organization orgId;
+
+	@Column(name = "quotation_iteam_id")
 	private int quotationIteamId;
 
-	@Column(name="total_amount")
+	@Column(name = "total_amount")
 	private String totalAmount;
 
 	private int version;
 
-	public Qoutation() {
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_quotation")
+	private Set<QuotationItem> quotationItems;
+
+	public Quotation() {
 	}
 
 	public int getQoutationId() {

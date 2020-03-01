@@ -20,36 +20,39 @@ public class VendorManagerController {
 
 	@Autowired
 	VendorManagerService vendorManagerService;
+
 	/**
 	 * Returns all vendor details by status
+	 * 
 	 * @param status
 	 * @return
 	 */
-	@PostMapping(value="/getAllVendorsByStatus", produces = "application/json", consumes = "application/json")
-	public List<VendorDetailsByStatus> getAllVendorDetailsByStatus(OrgStatus status){
+	@PostMapping(value = "/getAllVendorsByStatus", produces = "application/json", consumes = "application/json")
+	public List<VendorDetailsByStatus> getAllVendorDetailsByStatus(OrgStatus status) {
 		List<VendorDetailsByStatus> vendorDetailsBystatus = new ArrayList<VendorDetailsByStatus>();
-		 try {
-			vendorDetailsBystatus = vendorManagerService.getAllVendorDetailsByStatus(status.getStatusType());
+		try {
+			vendorDetailsBystatus = vendorManagerService.getAllVendorDetailsByStatus(status);
 		} catch (AppException e) {
 			throw new AppException(e.getErrorCode(), e.getErrorMessage(), e.getExceptiontype(), e.getStatus());
 		}
 		return vendorDetailsBystatus;
 	}
+
 	/**
-	 * Returns all RFQs of a vendor by vendorId(orgId) 
+	 * Returns all RFQs of a vendor by vendorId(orgId)
+	 * 
 	 * @param vendor
 	 * @return
 	 */
-	@PostMapping(value="/getAllRFQsByVendor", produces = "application/json", consumes = "application/json")
-	public List<RfqVendor> getAllVendorDetailsByStatus(RfqVendor vendor){
+	@PostMapping(value = "/getAllRFQsByVendor", produces = "application/json", consumes = "application/json")
+	public List<RfqVendor> getAllVendorDetailsByStatus(RfqVendor vendor) {
 		List<RfqVendor> rfqvendorDetails = new ArrayList<>();
-		 try {
-			rfqvendorDetails = vendorManagerService.getRFQDetailsByVendor(vendor.getOrgId());
+		try {
+			rfqvendorDetails = vendorManagerService.getRFQDetailsByVendor(vendor.getOrg());
 		} catch (AppException e) {
 			throw new AppException(e.getErrorCode(), e.getErrorMessage(), e.getExceptiontype(), e.getStatus());
 		}
 		return rfqvendorDetails;
 	}
-	
-	
+
 }

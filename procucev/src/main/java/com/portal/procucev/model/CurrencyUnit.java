@@ -10,8 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="currency_units")
-@NamedQuery(name="CurrencyUnit.findAll", query="SELECT c FROM CurrencyUnit c")
-public class CurrencyUnit implements Serializable {
+public class CurrencyUnit extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id

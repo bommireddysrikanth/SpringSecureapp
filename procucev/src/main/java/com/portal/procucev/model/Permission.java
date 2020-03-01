@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name="permissions")
 @NamedQuery(name="Permission.findAll", query="SELECT p FROM Permission p")
-public class Permission implements Serializable {
+public class Permission extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id

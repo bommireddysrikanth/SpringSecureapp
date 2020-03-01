@@ -1,37 +1,34 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the query database table.
  * 
  */
 @Entity
-@Table(name="query")
-@NamedQuery(name="Query.findAll", query="SELECT q FROM Query q")
-public class Query implements Serializable {
+@Table(name = "query")
+@NamedQuery(name = "Query.findAll", query = "SELECT q FROM Query q")
+public class Query extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="query_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "query_id")
 	private int queryId;
 
-	@Column(name="query_by")
-	private String queryBy;
-
-	@Column(name="query_duetime")
+	@Column(name = "query_duetime")
 	private String queryDuetime;
 
-	@Column(name="query_type_id")
-	private int queryTypeId;
+	@ManyToOne
+	// @Column(name = "query_type_id")
+	private QueryType querytype;
 
 	private String questions;
 
-	@Column(name="user_id")
-	private int userId;
+	// @ManyToOne
+	@Column(name = "user_id")
+	private User user;
 
 	public Query() {
 	}
@@ -44,28 +41,12 @@ public class Query implements Serializable {
 		this.queryId = queryId;
 	}
 
-	public String getQueryBy() {
-		return this.queryBy;
-	}
-
-	public void setQueryBy(String queryBy) {
-		this.queryBy = queryBy;
-	}
-
 	public String getQueryDuetime() {
 		return this.queryDuetime;
 	}
 
 	public void setQueryDuetime(String queryDuetime) {
 		this.queryDuetime = queryDuetime;
-	}
-
-	public int getQueryTypeId() {
-		return this.queryTypeId;
-	}
-
-	public void setQueryTypeId(int queryTypeId) {
-		this.queryTypeId = queryTypeId;
 	}
 
 	public String getQuestions() {
@@ -76,12 +57,20 @@ public class Query implements Serializable {
 		this.questions = questions;
 	}
 
-	public int getUserId() {
-		return this.userId;
+	public QueryType getQuerytype() {
+		return querytype;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setQuerytype(QueryType querytype) {
+		this.querytype = querytype;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -3,46 +3,33 @@ package com.portal.procucev.model;
 import javax.persistence.*;
 
 /**
- * The persistent class for the pr_items database table.
+ * The persistent class for the qoutation_items database table.
  * 
  */
 @Entity
-@Table(name = "pr_items")
-@NamedQuery(name = "PrItem.findAll", query = "SELECT p FROM PrItem p")
-public class PrItem extends Procucev {
+@Table(name = "quotation_items")
+public class QuotationItem extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "pr_items_id")
-	private int prItemsId;
-
-	@Column(name = "pr_id")
-	private Pr prId;
+	@Column(name = "quotation_items_id")
+	private int quotationItemsId;
 
 	private String description;
 	private String brand;
 	private long quantity;
 	@Column(name = "unit_of_measures")
 	private long unitofMeasures;
-	
-	@ManyToOne
-	private OrgStatus status;
+	private long unitprice;
+	private long totalamount;
 
-	public int getPrItemsId() {
-		return prItemsId;
+	public int getQuotationItemsId() {
+		return quotationItemsId;
 	}
 
-	public void setPrItemsId(int prItemsId) {
-		this.prItemsId = prItemsId;
-	}
-
-	public Pr getPrId() {
-		return prId;
-	}
-
-	public void setPrId(Pr prId) {
-		this.prId = prId;
+	public void setQuotationItemsId(int quotationItemsId) {
+		this.quotationItemsId = quotationItemsId;
 	}
 
 	public String getDescription() {
@@ -75,6 +62,22 @@ public class PrItem extends Procucev {
 
 	public void setUnitofMeasures(long unitofMeasures) {
 		this.unitofMeasures = unitofMeasures;
+	}
+
+	public long getUnitprice() {
+		return unitprice;
+	}
+
+	public void setUnitprice(long unitprice) {
+		this.unitprice = unitprice;
+	}
+
+	public long getTotalamount() {
+		return totalamount;
+	}
+
+	public void setTotalamount(long totalamount) {
+		this.totalamount = totalamount;
 	}
 
 }

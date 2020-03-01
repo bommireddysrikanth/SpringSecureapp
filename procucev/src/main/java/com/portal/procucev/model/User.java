@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-public class User {
+@Table(name = "user")
+public class User extends Procucev {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

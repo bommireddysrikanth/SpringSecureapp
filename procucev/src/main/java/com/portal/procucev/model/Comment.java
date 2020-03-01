@@ -1,28 +1,25 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the comments database table.
  * 
  */
 @Entity
-@Table(name="comments")
-@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
-public class Comment implements Serializable {
+@Table(name = "comments")
+public class Comment extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="comments_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "comments_id")
 	private int commentsId;
 
 	private String description;
 
-	@Column(name="rfq_id")
-	private int rfqId;
+	@ManyToOne
+	private Rfq rfq;
 
 	public Comment() {
 	}
@@ -43,12 +40,12 @@ public class Comment implements Serializable {
 		this.description = description;
 	}
 
-	public int getRfqId() {
-		return this.rfqId;
+	public Rfq getRfq() {
+		return rfq;
 	}
 
-	public void setRfqId(int rfqId) {
-		this.rfqId = rfqId;
+	public void setRfq(Rfq rfq) {
+		this.rfq = rfq;
 	}
 
 }

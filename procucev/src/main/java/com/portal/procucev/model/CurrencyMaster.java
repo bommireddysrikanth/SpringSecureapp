@@ -1,25 +1,22 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the currency_master database table.
  * 
  */
 @Entity
-@Table(name="currency_master")
-@NamedQuery(name="CurrencyMaster.findAll", query="SELECT c FROM CurrencyMaster c")
-public class CurrencyMaster implements Serializable {
+@Table(name = "currency_master")
+public class CurrencyMaster extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="currency_master_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "currency_master_id")
 	private int currencyMasterId;
 
-	@Column(name="currency_type")
+	@Column(name = "currency_type")
 	private String currencyType;
 
 	public CurrencyMaster() {

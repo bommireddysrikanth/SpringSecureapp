@@ -1,12 +1,11 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "org_status")
-public class OrgStatus extends Procucev implements Serializable {
+public class OrgStatus extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +23,10 @@ public class OrgStatus extends Procucev implements Serializable {
 	@Column(name = "org_status_id")
 	private int orgStatusId;
 
-	@Column(name = "org_type_id")
-	private int orgTypeId;
+	@ManyToOne
+	private OrgType orgTypeId;
 
-	@Column(name = "status_type")
-	private String statusType;
+	private String status;
 
 	public OrgStatus() {
 		super();
@@ -42,20 +40,20 @@ public class OrgStatus extends Procucev implements Serializable {
 		this.orgStatusId = orgStatusId;
 	}
 
-	public int getOrgTypeId() {
+	public OrgType getOrgTypeId() {
 		return this.orgTypeId;
 	}
 
-	public void setOrgTypeId(int orgTypeId) {
+	public void setOrgTypeId(OrgType orgTypeId) {
 		this.orgTypeId = orgTypeId;
 	}
 
-	public String getStatusType() {
-		return this.statusType;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStatusType(String statusType) {
-		this.statusType = statusType;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="query_type")
 @NamedQuery(name="QueryType.findAll", query="SELECT q FROM QueryType q")
-public class QueryType implements Serializable {
+public class QueryType extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id

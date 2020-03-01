@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="permission_role")
 @NamedQuery(name="PermissionRole.findAll", query="SELECT p FROM PermissionRole p")
-public class PermissionRole implements Serializable {
+public class PermissionRole extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id

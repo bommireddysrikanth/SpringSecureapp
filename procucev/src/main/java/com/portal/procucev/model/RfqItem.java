@@ -1,29 +1,32 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the rfq_items database table.
  * 
  */
 @Entity
-@Table(name="rfq_items")
-@NamedQuery(name="RfqItem.findAll", query="SELECT r FROM RfqItem r")
-public class RfqItem implements Serializable {
+@Table(name = "rfq_items")
+public class RfqItem extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="rfq_items_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "rfq_items_id")
 	private int rfqItemsId;
 
-	@Column(name="item_id")
-	private int itemId;
+	@ManyToOne
+	// @Column(name = "rfq_id")
+	private Rfq rfq;
 
-	@Column(name="rfq_id")
-	private int rfqId;
+	private String description;
+	private String brand;
+	private long quantity;
+	@Column(name = "unit_of_measures")
+	private long unitofMeasures;
+	private long unitprice;
+	private long totalamount;
 
 	public RfqItem() {
 	}
@@ -36,20 +39,60 @@ public class RfqItem implements Serializable {
 		this.rfqItemsId = rfqItemsId;
 	}
 
-	public int getItemId() {
-		return this.itemId;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public int getRfqId() {
-		return this.rfqId;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setRfqId(int rfqId) {
-		this.rfqId = rfqId;
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(long quantity) {
+		this.quantity = quantity;
+	}
+
+	public long getUnitofMeasures() {
+		return unitofMeasures;
+	}
+
+	public void setUnitofMeasures(long unitofMeasures) {
+		this.unitofMeasures = unitofMeasures;
+	}
+
+	public long getUnitprice() {
+		return unitprice;
+	}
+
+	public void setUnitprice(long unitprice) {
+		this.unitprice = unitprice;
+	}
+
+	public long getTotalamount() {
+		return totalamount;
+	}
+
+	public void setTotalamount(long totalamount) {
+		this.totalamount = totalamount;
+	}
+
+	public Rfq getRfq() {
+		return rfq;
+	}
+
+	public void setRfq(Rfq rfq) {
+		this.rfq = rfq;
 	}
 
 }

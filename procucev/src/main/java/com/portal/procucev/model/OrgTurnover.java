@@ -1,35 +1,43 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the org_turnover database table.
  * 
  */
 @Entity
-@Table(name="org_turnover")
-@NamedQuery(name="OrgTurnover.findAll", query="SELECT o FROM OrgTurnover o")
-public class OrgTurnover implements Serializable {
+@Table(name = "org_turnover")
+@NamedQuery(name = "OrgTurnover.findAll", query = "SELECT o FROM OrgTurnover o")
+public class OrgTurnover extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="org_turnover_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "org_turnover_id")
 	private int orgTurnoverId;
 
 	private String amount;
 
 	private int currency;
 
-	@Column(name="currency_master_id")
-	private int currencyMasterId;
+	// @Column(name = "currency_master_id")
+	private CurrencyMaster currencyMasterId;
 
-	@Column(name="currency_unit_id")
-	private int currencyUnitId;
+	// @Column(name = "currency_unit_id")
+	private CurrencyUnit currencyUnitId;
 
-	private String organization;
+	@ManyToOne
+	@JoinColumn(name = "organization_id")
+	private Organization organization;
 
 	private int year;
 
@@ -60,27 +68,27 @@ public class OrgTurnover implements Serializable {
 		this.currency = currency;
 	}
 
-	public int getCurrencyMasterId() {
-		return this.currencyMasterId;
+	public CurrencyMaster getCurrencyMasterId() {
+		return currencyMasterId;
 	}
 
-	public void setCurrencyMasterId(int currencyMasterId) {
+	public void setCurrencyMasterId(CurrencyMaster currencyMasterId) {
 		this.currencyMasterId = currencyMasterId;
 	}
 
-	public int getCurrencyUnitId() {
-		return this.currencyUnitId;
+	public CurrencyUnit getCurrencyUnitId() {
+		return currencyUnitId;
 	}
 
-	public void setCurrencyUnitId(int currencyUnitId) {
+	public void setCurrencyUnitId(CurrencyUnit currencyUnitId) {
 		this.currencyUnitId = currencyUnitId;
 	}
 
-	public String getOrganization() {
+	public Organization getOrganization() {
 		return this.organization;
 	}
 
-	public void setOrganization(String organization) {
+	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
 

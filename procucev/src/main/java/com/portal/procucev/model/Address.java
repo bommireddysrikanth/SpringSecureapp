@@ -1,6 +1,5 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "address")
-public class Address extends Procucev implements Serializable {
+public class Address extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,8 +39,9 @@ public class Address extends Procucev implements Serializable {
 
 	private String state;
 
-	@Column(name = "vendor_vendor_id")
-	private int vendorVendorId;
+	/*
+	 * @Column(name = "vendor_vendor_id") private int vendorVendorId;
+	 */
 
 	public Address() {
 		super();
@@ -109,14 +109,6 @@ public class Address extends Procucev implements Serializable {
 
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
-	}
-
-	public int getVendorVendorId() {
-		return this.vendorVendorId;
-	}
-
-	public void setVendorVendorId(int vendorVendorId) {
-		this.vendorVendorId = vendorVendorId;
 	}
 
 }

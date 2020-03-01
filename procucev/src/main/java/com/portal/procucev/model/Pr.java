@@ -1,41 +1,43 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
 
+import com.portal.procucev.model.Query;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * The persistent class for the pr database table.
  * 
  */
 @Entity
-@Table(name="pr")
-@NamedQuery(name="Pr.findAll", query="SELECT p FROM Pr p")
-public class Pr implements Serializable {
+@Table(name = "pr")
+@NamedQuery(name = "Pr.findAll", query = "SELECT p FROM Pr p")
+public class Pr extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="pr_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "pr_id")
 	private int prId;
 
-	@Column(name="approver_id")
-	private int approverId;
+	@ManyToOne
+	private User approverId;
 
-	@Column(name="pr_client_status_id")
-	private int prClientStatusId;
+	@ManyToOne
+	private OrgStatus status;
 
-	@Column(name="pr_procurev_status_id")
-	private String prProcurevStatusId;
+	@Column(name = "requested_ts")
+	private Date requestedTS;
 
-	@Column(name="pr_procuseru_status_id")
-	private int prProcuseruStatusId;
+	@Column(name = "due_date")
+	private Date dueDate;
 
-	private Timestamp requested_TS;
-
-	@Column(name="user_id")
-	private int userId;
+	private String priority;
+	
+	@ManyToMany
+	private List<Query> querys;
 
 	public Pr() {
 	}
@@ -48,52 +50,44 @@ public class Pr implements Serializable {
 		this.prId = prId;
 	}
 
-	public int getApproverId() {
-		return this.approverId;
+	public User getApproverId() {
+		return approverId;
 	}
 
-	public void setApproverId(int approverId) {
+	public void setApproverId(User approverId) {
 		this.approverId = approverId;
 	}
 
-	public int getPrClientStatusId() {
-		return this.prClientStatusId;
+	public OrgStatus getStatus() {
+		return status;
 	}
 
-	public void setPrClientStatusId(int prClientStatusId) {
-		this.prClientStatusId = prClientStatusId;
+	public void setStatus(OrgStatus status) {
+		this.status = status;
 	}
 
-	public String getPrProcurevStatusId() {
-		return this.prProcurevStatusId;
+	public Date getRequestedTS() {
+		return requestedTS;
 	}
 
-	public void setPrProcurevStatusId(String prProcurevStatusId) {
-		this.prProcurevStatusId = prProcurevStatusId;
+	public void setRequestedTS(Date requestedTS) {
+		this.requestedTS = requestedTS;
 	}
 
-	public int getPrProcuseruStatusId() {
-		return this.prProcuseruStatusId;
+	public Date getDueDate() {
+		return dueDate;
 	}
 
-	public void setPrProcuseruStatusId(int prProcuseruStatusId) {
-		this.prProcuseruStatusId = prProcuseruStatusId;
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
-	public Timestamp getRequested_TS() {
-		return this.requested_TS;
+	public String getPriority() {
+		return priority;
 	}
 
-	public void setRequested_TS(Timestamp requested_TS) {
-		this.requested_TS = requested_TS;
-	}
-
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 
 }

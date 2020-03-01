@@ -1,7 +1,5 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_invitation")
-public class VendorInvitation extends Procucev implements Serializable {
+public class VendorInvitation extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,8 +28,8 @@ public class VendorInvitation extends Procucev implements Serializable {
 	@Column(name = "invitation_user_id")
 	private String invitationUserId;
 
-	@Column(name = "link_expary_ts")
-	private String linkExparyTs;
+	@Column(name = "link_expiry_ts")
+	private String linkExpiryTs;
 
 	private String status;
 
@@ -59,12 +57,12 @@ public class VendorInvitation extends Procucev implements Serializable {
 		this.invitationUserId = invitationUserId;
 	}
 
-	public String getLinkExparyTs() {
-		return this.linkExparyTs;
+	public String getLinkExpiryTs() {
+		return this.linkExpiryTs;
 	}
 
-	public void setLinkExparyTs(String linkExparyTs) {
-		this.linkExparyTs = linkExparyTs;
+	public void setLinkExpiryTs(String linkExpiryTs) {
+		this.linkExpiryTs = linkExpiryTs;
 	}
 
 	public String getStatus() {

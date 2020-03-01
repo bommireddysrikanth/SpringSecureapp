@@ -1,6 +1,6 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Entity
 @Table(name = "organization")
-public class Organization extends Procucev implements Serializable {
+public class Organization extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
@@ -87,18 +88,28 @@ public class Organization extends Procucev implements Serializable {
 	@JoinColumn(name = "address_fk", referencedColumnName = "organization_id", nullable = false)
 	private List<Address> address;
 
-	// @OneToMany(targetEntity = OrgStatus.class, cascade = CascadeType.ALL)
-	// @JoinColumn(name = "org_status_fk", referencedColumnName = "organization_id",
-	// nullable = false)
-	// private List<OrgStatus> orgStatus;
-	// bi-directional many-to-one association to OrgStatus
 	@ManyToOne
 	@JoinColumn(name = "org_status_id")
 	private OrgStatus orgStatus;
 
-	@OneToMany(targetEntity = OrgType.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "org_types_fk", referencedColumnName = "organization_id", nullable = false)
-	private List<OrgType> orgType;
+	@ManyToOne
+	@JoinColumn(name = "org_types_id", nullable = false)
+	private OrgType orgType;
+
+	@OneToMany(targetEntity = ClientVerticals.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "client_verticals_fk", referencedColumnName = "organization_id", nullable = false)
+	private List<ClientVerticals> clientVerticals;
+
+	@OneToMany(targetEntity = ClientCategories.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "client_categories_fk", referencedColumnName = "organization_id", nullable = false)
+	private List<ClientCategories> clientCategories;
+
+	@OneToMany(targetEntity = ClientDocuments.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "client_documents_fk", referencedColumnName = "organization_id", nullable = false)
+	private List<ClientDocuments> clientDocuments;
+
+	@Column(name = "license_valid_date")
+	private Date licenseValidDate;
 
 	public int getOrganizationId() {
 		return this.organizationId;
@@ -172,13 +183,6 @@ public class Organization extends Procucev implements Serializable {
 		this.address = address;
 	}
 
-	/*
-	 * public List<OrgStatus> getOrgStatus() { return orgStatus; }
-	 * 
-	 * public void setOrgStatus(List<OrgStatus> orgStatus) { this.orgStatus =
-	 * orgStatus; }
-	 */
-
 	public OrgStatus getOrgStatus() {
 		return orgStatus;
 	}
@@ -187,11 +191,11 @@ public class Organization extends Procucev implements Serializable {
 		this.orgStatus = orgStatus;
 	}
 
-	public List<OrgType> getOrgType() {
+	public OrgType getOrgType() {
 		return orgType;
 	}
 
-	public void setOrgType(List<OrgType> orgType) {
+	public void setOrgType(OrgType orgType) {
 		this.orgType = orgType;
 	}
 
@@ -253,6 +257,38 @@ public class Organization extends Procucev implements Serializable {
 
 	public void setFiles(byte[] files) {
 		this.files = files;
+	}
+
+	public List<ClientVerticals> getClientVerticals() {
+		return clientVerticals;
+	}
+
+	public void setClientVerticals(List<ClientVerticals> clientVerticals) {
+		this.clientVerticals = clientVerticals;
+	}
+
+	public List<ClientCategories> getClientCategories() {
+		return clientCategories;
+	}
+
+	public void setClientCategories(List<ClientCategories> clientCategories) {
+		this.clientCategories = clientCategories;
+	}
+
+	public List<ClientDocuments> getClientDocuments() {
+		return clientDocuments;
+	}
+
+	public void setClientDocuments(List<ClientDocuments> clientDocuments) {
+		this.clientDocuments = clientDocuments;
+	}
+
+	public Date getLicenseValidDate() {
+		return licenseValidDate;
+	}
+
+	public void setLicenseValidDate(Date licenseValidDate) {
+		this.licenseValidDate = licenseValidDate;
 	}
 
 }

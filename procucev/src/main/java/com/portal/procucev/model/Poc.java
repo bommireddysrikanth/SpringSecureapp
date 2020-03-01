@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "poc")
-public class Poc extends Procucev implements Serializable {
+public class Poc extends Procucev  {
 
 	private static final long serialVersionUID = 1L;
 

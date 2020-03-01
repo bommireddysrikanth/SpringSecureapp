@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "org_types")
-public class OrgType extends Procucev implements Serializable {
+public class OrgType extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 

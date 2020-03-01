@@ -1,7 +1,5 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_client_references")
-public class VendorClientReference extends Procucev implements Serializable {
+public class VendorClientReference extends Procucev{
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,8 +26,8 @@ public class VendorClientReference extends Procucev implements Serializable {
 	@Column(name = "business_provided_ts")
 	private String businessProvidedTs;
 
-	@Column(name = "ciient_poc_email")
-	private String ciientPocEmail;
+	@Column(name = "client_poc_email")
+	private String clientPocEmail;
 
 	@Column(name = "client_email")
 	private String clientEmail;
@@ -81,12 +79,12 @@ public class VendorClientReference extends Procucev implements Serializable {
 		this.businessProvidedTs = businessProvidedTs;
 	}
 
-	public String getCiientPocEmail() {
-		return this.ciientPocEmail;
+	public String getClientPocEmail() {
+		return this.clientPocEmail;
 	}
 
-	public void setCiientPocEmail(String ciientPocEmail) {
-		this.ciientPocEmail = ciientPocEmail;
+	public void setClientPocEmail(String ciientPocEmail) {
+		this.clientPocEmail = ciientPocEmail;
 	}
 
 	public String getClientEmail() {

@@ -1,6 +1,6 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_documents")
-public class VendorDocument extends Procucev implements Serializable {
+public class VendorDocument extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 

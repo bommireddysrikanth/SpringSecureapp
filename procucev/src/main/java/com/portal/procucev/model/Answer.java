@@ -1,31 +1,29 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the answers database table.
  * 
  */
 @Entity
-@Table(name="answers")
-@NamedQuery(name="Answer.findAll", query="SELECT a FROM Answer a")
-public class Answer implements Serializable {
+@Table(name = "answers")
+@NamedQuery(name = "Answer.findAll", query = "SELECT a FROM Answer a")
+public class Answer extends Procucev {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="answers_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "answers_id")
 	private int answersId;
 
 	private String answer;
 
-	@Column(name="answers_by")
+	@Column(name = "answers_by")
 	private String answersBy;
 
-	@Column(name="query_id")
-	private int queryId;
+	@ManyToOne
+	private Query query;
 
 	public Answer() {
 	}
@@ -54,12 +52,12 @@ public class Answer implements Serializable {
 		this.answersBy = answersBy;
 	}
 
-	public int getQueryId() {
-		return this.queryId;
+	public Query getQuery() {
+		return query;
 	}
 
-	public void setQueryId(int queryId) {
-		this.queryId = queryId;
+	public void setQuery(Query query) {
+		this.query = query;
 	}
 
 }

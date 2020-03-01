@@ -1,12 +1,11 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_category_matrix")
-public class VendorCategoryMatrix extends Procucev implements Serializable {
+public class VendorCategoryMatrix extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +23,11 @@ public class VendorCategoryMatrix extends Procucev implements Serializable {
 	@Column(name = "vendor_category_matrix_id")
 	private int vendorCategoryMatrixId;
 
-	@Column(name = "vendor_category_master_id")
-	private int vendorCategoryMasterId;
+	@ManyToOne
+	private VendorCategoryMaster vendorCategoryMasterId;
 
-	@Column(name = "vendor_org_id")
-	private int vendorOrgId;
+	@ManyToOne
+	private Organization vendorOrgId;
 
 	public VendorCategoryMatrix() {
 		super();
@@ -42,19 +41,19 @@ public class VendorCategoryMatrix extends Procucev implements Serializable {
 		this.vendorCategoryMatrixId = vendorCategoryMatrixId;
 	}
 
-	public int getVendorCategoryMasterId() {
-		return this.vendorCategoryMasterId;
+	public VendorCategoryMaster getVendorCategoryMasterId() {
+		return vendorCategoryMasterId;
 	}
 
-	public void setVendorCategoryMasterId(int vendorCategoryMasterId) {
+	public void setVendorCategoryMasterId(VendorCategoryMaster vendorCategoryMasterId) {
 		this.vendorCategoryMasterId = vendorCategoryMasterId;
 	}
 
-	public int getVendorOrgId() {
-		return this.vendorOrgId;
+	public Organization getVendorOrgId() {
+		return vendorOrgId;
 	}
 
-	public void setVendorOrgId(int vendorOrgId) {
+	public void setVendorOrgId(Organization vendorOrgId) {
 		this.vendorOrgId = vendorOrgId;
 	}
 
