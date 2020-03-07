@@ -13,6 +13,11 @@ public interface VendorService {
 	 */
 	boolean userRegistration(Organization newVendor);
 
+	/**
+	 * Method to fetch all the vendor information
+	 * 
+	 * @return
+	 */
 	List<Organization> fetchAllVendors();
 
 }

@@ -1,18 +1,14 @@
 package com.portal.procucev.model;
 
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,28 +27,40 @@ public class Rfq extends Procucev {
 	@Column(name = "rfq_id")
 	private int rfqId;
 
+	@OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_comment_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<Comment> rfqComment;
+
 	@ManyToOne
-	private PR prId;
+	private Pr prId;
 
-	@ManyToMany
-	private List<Query> queryId;
+	@OneToMany(targetEntity = Query.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_query_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<Query> rfqQuery;
 
-	@Column(name = "rfq_created_by")
-	private String rfqCreatedBy;
+	@OneToMany(targetEntity = Quotation.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_quotation_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<Quotation> rfqQuotation;
 
-	private Timestamp rfq_created_TS;
+	// added
+
+	@OneToMany(targetEntity = RfqItem.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_item_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<RfqItem> rfqItem;
+
+	// added
+
+	@OneToMany(targetEntity = RfqVendor.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_vendor_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<RfqVendor> rfqVendor;
+	// added
+
+	@OneToMany(targetEntity = RFQDocument.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rfq_document_fk", referencedColumnName = "rfq_id", nullable = false)
+	private List<RFQDocument> rfqDocument;
 
 	@ManyToOne
 	private OrgStatus rfqStatus;
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "rfq_id_fk")
-	private Set<RFQDocument> documents;
-	
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<RfqItem> rfqitems;
-	
 
 	public Rfq() {
 	}
@@ -65,52 +73,68 @@ public class Rfq extends Procucev {
 		this.rfqId = rfqId;
 	}
 
-	public String getRfqCreatedBy() {
-		return this.rfqCreatedBy;
+	public List<Comment> getRfqComment() {
+		return rfqComment;
 	}
 
-	public void setRfqCreatedBy(String rfqCreatedBy) {
-		this.rfqCreatedBy = rfqCreatedBy;
+	public void setRfqComment(List<Comment> rfqComment) {
+		this.rfqComment = rfqComment;
 	}
 
-	public Timestamp getRfq_created_TS() {
-		return this.rfq_created_TS;
+	public List<RFQDocument> getRfqDocument() {
+		return rfqDocument;
 	}
 
-	public void setRfq_created_TS(Timestamp rfq_created_TS) {
-		this.rfq_created_TS = rfq_created_TS;
+	public void setRfqDocument(List<RFQDocument> rfqDocument) {
+		this.rfqDocument = rfqDocument;
+	}
+
+	public Pr getPrId() {
+		return prId;
+	}
+
+	public void setPrId(Pr prId) {
+		this.prId = prId;
+	}
+
+	public List<Query> getRfqQuery() {
+		return rfqQuery;
+	}
+
+	public void setRfqQuery(List<Query> rfqQuery) {
+		this.rfqQuery = rfqQuery;
+	}
+
+	public List<Quotation> getRfqQuotation() {
+		return rfqQuotation;
+	}
+
+	public void setRfqQuotation(List<Quotation> rfqQuotation) {
+		this.rfqQuotation = rfqQuotation;
+	}
+
+	public List<RfqItem> getRfqItem() {
+		return rfqItem;
+	}
+
+	public void setRfqItem(List<RfqItem> rfqItem) {
+		this.rfqItem = rfqItem;
+	}
+
+	public List<RfqVendor> getRfqVendor() {
+		return rfqVendor;
+	}
+
+	public void setRfqVendor(List<RfqVendor> rfqVendor) {
+		this.rfqVendor = rfqVendor;
 	}
 
 	public OrgStatus getRfqStatus() {
-		return this.rfqStatus;
+		return rfqStatus;
 	}
 
 	public void setRfqStatus(OrgStatus rfqStatus) {
 		this.rfqStatus = rfqStatus;
-	}
-
-	public Set<RFQDocument> getDocuments() {
-		return documents;
-	}
-
-	public void setDocuments(Set<RFQDocument> documents) {
-		this.documents = documents;
-	}
-
-	public PR getPrId() {
-		return prId;
-	}
-
-	public void setPrId(PR prId) {
-		this.prId = prId;
-	}
-
-	public List<Query> getQueryId() {
-		return queryId;
-	}
-
-	public void setQueryId(List<Query> queryId) {
-		this.queryId = queryId;
 	}
 
 }

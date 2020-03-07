@@ -17,7 +17,6 @@ public class RfqItem extends Procucev {
 	private int rfqItemsId;
 
 	@ManyToOne
-	// @Column(name = "rfq_id")
 	private Rfq rfq;
 
 	private String description;

@@ -2,6 +2,8 @@ package com.portal.procucev.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 /**
  * The persistent class for the query database table.
  * 
@@ -20,8 +22,10 @@ public class Query extends Procucev {
 	@Column(name = "query_duetime")
 	private String queryDuetime;
 
+	@Type(type = "text")
+	private String raiseQuery;
+
 	@ManyToOne
-	// @Column(name = "query_type_id")
 	private QueryType querytype;
 
 	private String questions;
@@ -29,11 +33,14 @@ public class Query extends Procucev {
 	// @ManyToOne
 	@Column(name = "user_id")
 	private User user;
-	
-	private Rfq rfq;
-	
-	private PR pr;
-	
+
+	public String getRaiseQuery() {
+		return raiseQuery;
+	}
+
+	public void setRaiseQuery(String raiseQuery) {
+		this.raiseQuery = raiseQuery;
+	}
 
 	public Query() {
 	}

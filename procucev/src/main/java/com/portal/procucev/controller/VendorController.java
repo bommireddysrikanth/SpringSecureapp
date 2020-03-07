@@ -51,8 +51,9 @@ public class VendorController {
 	 * @throws IOException
 	 */
 	@PostMapping(value = "/newVendorRegistration", consumes = { "multipart/form-data" })
-	public ResponseEntity<?> userRegistration(@RequestParam("model") String newVendorModel,
-			@RequestParam("type") String type, @RequestParam MultipartFile inputfile) throws IOException {
+	public ResponseEntity<?> userRegistration(@RequestParam(name = "model", required = false) String newVendorModel,
+			@RequestParam(name = "type", required = false) String type,
+			@RequestParam(name = "file", required = false) MultipartFile inputfile) throws IOException {
 
 		ObjectMapper mapper = new ObjectMapper();
 		Organization newVendor = new Organization();
@@ -63,7 +64,7 @@ public class VendorController {
 
 			if (type.equals("Client Certificates")) {
 				List<VendorClientReference> clentList = new ArrayList<VendorClientReference>();
-				VendorClientReference ref = new VendorClientReference();
+				VendorClientReference ref = newVendor.getClientReference().get(0);
 				ref.setFileName(inputfile.getOriginalFilename());
 				ref.setFile(inputfile.getBytes());
 				clentList.add(ref);
@@ -72,7 +73,7 @@ public class VendorController {
 			}
 			if (type.equals("Documents")) {
 				List<VendorDocument> clentList = new ArrayList<VendorDocument>();
-				VendorDocument ref = new VendorDocument();
+				VendorDocument ref = newVendor.getDocuments().get(0);
 				ref.setFileName(inputfile.getOriginalFilename());
 				ref.setFile(inputfile.getBytes());
 				clentList.add(ref);
@@ -80,7 +81,7 @@ public class VendorController {
 			}
 			if (type.equals("Vendor Certificates")) {
 				List<VendorCertificate> clentList = new ArrayList<VendorCertificate>();
-				VendorCertificate ref = new VendorCertificate();
+				VendorCertificate ref = newVendor.getCertificates().get(0);
 				ref.setFileName(inputfile.getOriginalFilename());
 				ref.setFile(inputfile.getBytes());
 				clentList.add(ref);

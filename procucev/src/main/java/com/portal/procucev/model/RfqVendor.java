@@ -1,8 +1,13 @@
 package com.portal.procucev.model;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the rfq_vendors database table.
@@ -10,7 +15,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "rfq_vendors")
-@NamedQuery(name = "RfqVendor.findAll", query = "SELECT r FROM RfqVendor r")
 public class RfqVendor extends Procucev {
 	private static final long serialVersionUID = 1L;
 
@@ -29,19 +33,12 @@ public class RfqVendor extends Procucev {
 	@ManyToOne
 	private Rfq rfq;
 
-	//TODO Include Vendor Reference here for RFQ Vendor 
 	@Column(name = "rfq_notified_to")
 	private String rfqNotifiedTo;
-
-	@Column(name = "rfq_notified_ts")
-	private Date rfqNotifiedTs;
 
 	@ManyToOne
 	@JoinColumn(name = "org_status_id")
 	private OrgStatus rfqVendorStatus;
-
-	@Column(name = "sent_ts")
-	private Date sentTs;
 
 	@ManyToOne
 	private User user;
@@ -73,14 +70,6 @@ public class RfqVendor extends Procucev {
 		this.rfqNotifiedTo = rfqNotifiedTo;
 	}
 
-	public void setRfqNotifiedTs(Timestamp rfqNotifiedTs) {
-		this.rfqNotifiedTs = rfqNotifiedTs;
-	}
-
-	public void setSentTs(Timestamp sentTs) {
-		this.sentTs = sentTs;
-	}
-
 	public Organization getOrg() {
 		return organization;
 	}
@@ -95,22 +84,6 @@ public class RfqVendor extends Procucev {
 
 	public void setRfq(Rfq rfq) {
 		this.rfq = rfq;
-	}
-
-	public Date getRfqNotifiedTs() {
-		return rfqNotifiedTs;
-	}
-
-	public void setRfqNotifiedTs(Date rfqNotifiedTs) {
-		this.rfqNotifiedTs = rfqNotifiedTs;
-	}
-
-	public Date getSentTs() {
-		return sentTs;
-	}
-
-	public void setSentTs(Date sentTs) {
-		this.sentTs = sentTs;
 	}
 
 	public User getUser() {
