@@ -18,7 +18,7 @@ public class PrItem extends Procucev {
 	private int prItemsId;
 
 	@Column(name = "pr_id")
-	private Pr prId;
+	private PR prId;
 
 	private String description;
 	private String brand;
@@ -37,11 +37,11 @@ public class PrItem extends Procucev {
 		this.prItemsId = prItemsId;
 	}
 
-	public Pr getPrId() {
+	public PR getPrId() {
 		return prId;
 	}
 
-	public void setPrId(Pr prId) {
+	public void setPrId(PR prId) {
 		this.prId = prId;
 	}
 

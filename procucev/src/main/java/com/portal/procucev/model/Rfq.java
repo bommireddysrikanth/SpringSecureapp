@@ -32,7 +32,7 @@ public class Rfq extends Procucev {
 	private int rfqId;
 
 	@ManyToOne
-	private Pr prId;
+	private PR prId;
 
 	@ManyToMany
 	private List<Query> queryId;
@@ -92,11 +92,11 @@ public class Rfq extends Procucev {
 		this.documents = documents;
 	}
 
-	public Pr getPrId() {
+	public PR getPrId() {
 		return prId;
 	}
 
-	public void setPrId(Pr prId) {
+	public void setPrId(PR prId) {
 		this.prId = prId;
 	}
 

@@ -29,10 +29,10 @@ public class OrgTurnover extends Procucev {
 
 	private int currency;
 
-	// @Column(name = "currency_master_id")
+	@Column(name = "currency_master_id")
 	private CurrencyMaster currencyMasterId;
 
-	// @Column(name = "currency_unit_id")
+	@Column(name = "currency_unit_id")
 	private CurrencyUnit currencyUnitId;
 
 	@ManyToOne
