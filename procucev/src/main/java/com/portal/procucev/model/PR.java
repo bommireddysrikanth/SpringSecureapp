@@ -40,6 +40,9 @@ public class PR extends Procucev {
 
 	@ManyToMany
 	private List<Query> querys;
+	
+	@ManyToMany
+	private List<PrItem> pritems;
 
 	public PR() {
 	}

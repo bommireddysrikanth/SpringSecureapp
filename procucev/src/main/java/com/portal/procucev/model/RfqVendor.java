@@ -29,6 +29,7 @@ public class RfqVendor extends Procucev {
 	@ManyToOne
 	private Rfq rfq;
 
+	//TODO Include Vendor Reference here for RFQ Vendor 
 	@Column(name = "rfq_notified_to")
 	private String rfqNotifiedTo;
 

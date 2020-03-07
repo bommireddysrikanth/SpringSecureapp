@@ -48,6 +48,11 @@ public class Rfq extends Procucev {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "rfq_id_fk")
 	private Set<RFQDocument> documents;
+	
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<RfqItem> rfqitems;
+	
 
 	public Rfq() {
 	}

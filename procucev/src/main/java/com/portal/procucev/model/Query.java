@@ -29,6 +29,11 @@ public class Query extends Procucev {
 	// @ManyToOne
 	@Column(name = "user_id")
 	private User user;
+	
+	private Rfq rfq;
+	
+	private PR pr;
+	
 
 	public Query() {
 	}
