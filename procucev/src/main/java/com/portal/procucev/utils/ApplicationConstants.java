@@ -11,5 +11,7 @@ public class ApplicationConstants {
 	public static final String BUSSINESS_EXCEPTION = "Bussiness Level Exception";
 	public static final String No_RFQ_FOUND = "No RFQ's Found";
 	public static final String DATABASE_EXCEPTION = "Database Level Exception";
+	public static final String SERVICE_LEVEL_EXCEPTION = "Service Level Exception";
+	public static final String PR_NOT_FOUND = "PR not found with ID %s";
 
 }
