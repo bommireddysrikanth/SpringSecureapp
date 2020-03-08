@@ -29,7 +29,7 @@ public interface PRDaoManager extends ProcucevDao<PR, Serializable> {
 	 */
 	PR findByOrgAndPrId(Organization org, int prId);
 
-	List<PR> findByOrgStatus(OrgStatus orgStatus);
+	//List<PR> findByOrgStatus(OrgStatus orgStatus);
 	
 
 }
