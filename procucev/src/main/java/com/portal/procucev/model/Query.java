@@ -34,6 +34,39 @@ public class Query extends Procucev {
 	@Column(name = "user_id")
 	private User user;
 
+	public Rfq getRfq() {
+		return rfq;
+	}
+
+	public void setRfq(Rfq rfq) {
+		this.rfq = rfq;
+	}
+
+	public PR getPr() {
+		return pr;
+	}
+
+	public void setPr(PR pr) {
+		this.pr = pr;
+	}
+
+	public Quotation getQuotation() {
+		return quotation;
+	}
+
+	public void setQuotation(Quotation quotation) {
+		this.quotation = quotation;
+	}
+
+	@ManyToOne
+	private Rfq rfq;
+
+	@ManyToOne
+	private PR pr;
+
+	@ManyToOne
+	private Quotation quotation;
+
 	public String getRaiseQuery() {
 		return raiseQuery;
 	}
