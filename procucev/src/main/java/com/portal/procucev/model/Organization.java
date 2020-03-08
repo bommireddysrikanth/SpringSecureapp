@@ -2,15 +2,19 @@ package com.portal.procucev.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -54,6 +58,12 @@ public class Organization extends Procucev {
 
 	@Column(name = "PAN")
 	private String pan;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "org_manager", joinColumns = {
+			@JoinColumn(referencedColumnName = "organization_id") }, inverseJoinColumns = {
+					@JoinColumn(referencedColumnName = "ID") })
+	private Set<User> categoryManager;
 
 	// bi-directional many-to-one association to OrgBankDetail
 	@OneToMany(targetEntity = OrgBankDetail.class, cascade = CascadeType.ALL)
