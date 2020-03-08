@@ -32,7 +32,7 @@ public class Rfq extends Procucev {
 	private List<Comment> rfqComment;
 
 	@ManyToOne
-	private Pr prId;
+	private PR prId;
 
 	@OneToMany(targetEntity = Query.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "rfq_query_fk", referencedColumnName = "rfq_id", nullable = false)
@@ -89,11 +89,11 @@ public class Rfq extends Procucev {
 		this.rfqDocument = rfqDocument;
 	}
 
-	public Pr getPrId() {
+	public PR getPrId() {
 		return prId;
 	}
 
-	public void setPrId(Pr prId) {
+	public void setPrId(PR prId) {
 		this.prId = prId;
 	}
 

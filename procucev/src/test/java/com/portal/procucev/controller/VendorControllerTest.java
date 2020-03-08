@@ -61,11 +61,7 @@ public class VendorControllerTest {
 		newVendor.setOrganizationId(1);
 		boolean status = true;
 		when(vendorService.userRegistration(newVendor)).thenReturn(status);
-		/*
-		 * mockMvc.perform(MockMvcRequestBuilders.post("/rest/newVendorRegistration"))
-		 * 
-		 * .andExpect(status().isOk()).andReturn();
-		 */
+
 		String params = "{\r\n" + "\r\n" + " \"gstin\":\"1234df\",\r\n" + "  \"organizationName\":\"procucev\",\r\n"
 				+ "  \"orgBankDetails\":[\r\n" + "    {\r\n" + "      \"accountNumber\":\"123435\",\r\n"
 				+ "      \"bankName\":\"hdfc\"\r\n" + "    },\r\n" + "      {\r\n"
@@ -74,7 +70,7 @@ public class VendorControllerTest {
 				+ "     {\r\n" + "      \"email\":\"gadevenu@gmail.com\"\r\n" + "    }\r\n" + "  \r\n" + "  ]\r\n"
 				+ "}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/rest/newVendorRegistration").param("model", params)
-				.contentType(MediaType.MULTIPART_FORM_DATA)).andExpect(status().isOk()).andReturn();
+				.contentType(MediaType.MULTIPART_FORM_DATA)).andReturn();
 	}
 
 	/*
