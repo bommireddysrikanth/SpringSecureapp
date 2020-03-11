@@ -16,11 +16,6 @@ import java.util.List;
 public class PR extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "pr_id")
-	private int prId;
-
 	@ManyToOne
 	private Organization org;
 
@@ -40,19 +35,11 @@ public class PR extends Procucev {
 
 	@ManyToMany
 	private List<Query> querys;
-	
+
 	@ManyToMany
 	private List<PrItem> pritems;
 
 	public PR() {
-	}
-
-	public int getPrId() {
-		return this.prId;
-	}
-
-	public void setPrId(int prId) {
-		this.prId = prId;
 	}
 
 	public User getApproverId() {
@@ -113,9 +100,9 @@ public class PR extends Procucev {
 
 	@Override
 	public String toString() {
-		return "PR [prId=" + prId + ", org=" + org + ", approverId=" + approverId + ", status=" + status
-				+ ", requestedTS=" + requestedTS + ", dueDate=" + dueDate + ", priority=" + priority + ", querys="
-				+ querys + "]";
+		return "PR [org=" + org + ", approverId=" + approverId + ", status=" + status + ", requestedTS=" + requestedTS
+				+ ", dueDate=" + dueDate + ", priority=" + priority + ", querys=" + querys + ", pritems=" + pritems
+				+ "]";
 	}
 
 }

@@ -17,11 +17,6 @@ public class RFQDocument extends Procucev {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "rfq_document_id")
-	private int rfqDocumentId;
-
 	@Lob
 	@Column(name = "file_details")
 	private String fileDetails;
@@ -42,14 +37,6 @@ public class RFQDocument extends Procucev {
 
 	public void setRfqFk(int rfqFk) {
 		this.rfqFk = rfqFk;
-	}
-
-	public int getRfqDocumentId() {
-		return rfqDocumentId;
-	}
-
-	public void setRfqDocumentId(int rfqDocumentId) {
-		this.rfqDocumentId = rfqDocumentId;
 	}
 
 	public String getFileDetails() {

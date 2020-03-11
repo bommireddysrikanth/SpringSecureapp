@@ -18,13 +18,7 @@ import javax.persistence.Table;
 public class RfqVendor extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "rfq_vendors_id")
-	private int rfqVendorsId;
-
 	@ManyToOne
-	@JoinColumn(name = "organization_id")
 	private Organization organization;
 
 	@Column(name = "is_rfq_notified")
@@ -37,21 +31,12 @@ public class RfqVendor extends Procucev {
 	private String rfqNotifiedTo;
 
 	@ManyToOne
-	@JoinColumn(name = "org_status_id")
 	private OrgStatus rfqVendorStatus;
 
 	@ManyToOne
 	private User user;
 
 	public RfqVendor() {
-	}
-
-	public int getRfqVendorsId() {
-		return this.rfqVendorsId;
-	}
-
-	public void setRfqVendorsId(int rfqVendorsId) {
-		this.rfqVendorsId = rfqVendorsId;
 	}
 
 	public byte getIsRfqNotified() {

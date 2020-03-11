@@ -14,11 +14,6 @@ import org.hibernate.annotations.Type;
 public class Query extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "query_id")
-	private int queryId;
-
 	@Column(name = "query_duetime")
 	private String queryDuetime;
 
@@ -30,8 +25,7 @@ public class Query extends Procucev {
 
 	private String questions;
 
-	// @ManyToOne
-	@Column(name = "user_id")
+	@ManyToOne
 	private User user;
 
 	public Rfq getRfq() {
@@ -76,14 +70,6 @@ public class Query extends Procucev {
 	}
 
 	public Query() {
-	}
-
-	public int getQueryId() {
-		return this.queryId;
-	}
-
-	public void setQueryId(int queryId) {
-		this.queryId = queryId;
 	}
 
 	public String getQueryDuetime() {

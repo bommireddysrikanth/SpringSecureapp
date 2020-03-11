@@ -53,7 +53,7 @@ public class RFQServiceImpl implements RFQService {
 	 */
 	@Override
 	public List<Rfq> fetchRfqById(int id) {
-		List<Rfq> vendorList = rfqDao.findByRfqId(id);
+		List<Rfq> vendorList = rfqDao.findById(id);
 		if (!CollectionUtils.isEmpty(vendorList)) {
 			return vendorList;
 		} else {

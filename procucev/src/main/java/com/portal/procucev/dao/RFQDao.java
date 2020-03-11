@@ -11,6 +11,6 @@ import com.portal.procucev.model.Rfq;
 @Repository("rfqDao")
 public interface RFQDao extends JpaRepository<Rfq, Integer>, JpaSpecificationExecutor<Rfq> {
 
-	List<Rfq> findByRfqId(int id);
+	List<Rfq> findById(int id);
 
 }

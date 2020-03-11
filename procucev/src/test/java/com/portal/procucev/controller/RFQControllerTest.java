@@ -61,7 +61,7 @@ public class RFQControllerTest {
 	@Test
 	public void fetchRfqById() throws Exception {
 		Rfq rfq = new Rfq();
-		rfq.setRfqId(1);
+		rfq.setId(1);
 		List<Rfq> status = new ArrayList<Rfq>();
 
 		when(rfqService.fetchRfqById(1)).thenReturn(status);

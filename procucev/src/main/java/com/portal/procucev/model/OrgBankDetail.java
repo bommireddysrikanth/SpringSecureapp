@@ -18,16 +18,11 @@ import javax.persistence.Table;
 public class OrgBankDetail extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "org_bank_details_id")
-	private int orgBankDetailsId;
-
 	@Column(name = "account_number")
 	private String accountNumber;
 
 	@ManyToOne
-	@JoinColumn(name = "address_id")
+	// @JoinColumn(name = "address_id")
 	private Address addressId;
 
 	@Column(name = "bank_name")
@@ -35,14 +30,6 @@ public class OrgBankDetail extends Procucev {
 
 	public OrgBankDetail() {
 		super();
-	}
-
-	public int getOrgBankDetailsId() {
-		return this.orgBankDetailsId;
-	}
-
-	public void setOrgBankDetailsId(int orgBankDetailsId) {
-		this.orgBankDetailsId = orgBankDetailsId;
 	}
 
 	public String getAccountNumber() {

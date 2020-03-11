@@ -58,7 +58,7 @@ public class VendorControllerTest {
 	@Test
 	public void userRegistration() throws Exception {
 		Organization newVendor = new Organization();
-		newVendor.setOrganizationId(1);
+		newVendor.setId(1);
 		boolean status = true;
 		when(vendorService.userRegistration(newVendor)).thenReturn(status);
 

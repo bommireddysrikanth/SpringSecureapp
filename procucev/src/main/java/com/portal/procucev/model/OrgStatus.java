@@ -18,13 +18,8 @@ public class OrgStatus extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "org_status_id")
-	private int orgStatusId;
-
 	@ManyToOne
-	private OrgType orgTypeId;
+	private OrgType orgType;
 
 	private String status;
 
@@ -32,20 +27,12 @@ public class OrgStatus extends Procucev {
 		super();
 	}
 
-	public int getOrgStatusId() {
-		return this.orgStatusId;
-	}
-
-	public void setOrgStatusId(int orgStatusId) {
-		this.orgStatusId = orgStatusId;
-	}
-
 	public OrgType getOrgTypeId() {
-		return this.orgTypeId;
+		return this.orgType;
 	}
 
 	public void setOrgTypeId(OrgType orgTypeId) {
-		this.orgTypeId = orgTypeId;
+		this.orgType = orgTypeId;
 	}
 
 	public String getStatus() {

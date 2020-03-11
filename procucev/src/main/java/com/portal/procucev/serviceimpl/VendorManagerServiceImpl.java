@@ -40,7 +40,8 @@ public class VendorManagerServiceImpl implements VendorManagerService {
 		List<VendorDetailsByStatus> registrationPendingVendors = new ArrayList<VendorDetailsByStatus>();
 		List<VendorDetailsByStatus> approvalPendingVendors = new ArrayList<VendorDetailsByStatus>();
 		OrgType orgTypeForVendor = new OrgType();
-		orgTypeForVendor.setOrgTypesId(ApplicationConstants.orgTypeForVendor);
+		orgTypeForVendor.setId(ApplicationConstants.orgTypeForVendor);
+		// orgTypeForVendor.setOrgTypesId(ApplicationConstants.orgTypeForVendor);
 
 		List<Organization> vendorsList = orgDao.findByorgType(orgTypeForVendor);
 		if (status.getStatus().equalsIgnoreCase("approved")) {
@@ -50,7 +51,7 @@ public class VendorManagerServiceImpl implements VendorManagerService {
 					vendor.setVendorName(organization.getOrganizationName());
 					List<RfqVendor> rfqCount = getVendorRFQCountById(organization);
 					vendor.setRfqSent(rfqCount.size());
-					List<Quotation> quotes = getQuotationsById(organization.getOrganizationId());
+					List<Quotation> quotes = getQuotationsById(organization.getId());
 					vendor.setQuotationsRecieved(quotes.size());
 					// TODO - fetching count of queries those to be answered by procucve vendor
 					// manager to vendor
@@ -69,7 +70,7 @@ public class VendorManagerServiceImpl implements VendorManagerService {
 	 * @param organizationId
 	 */
 	private List<Quotation> getQuotationsById(int organizationId) {
-		List<Quotation> quotations = quotationsDao.findByQoutationId(organizationId);
+		List<Quotation> quotations = quotationsDao.findById(organizationId);
 		return quotations;
 	}
 

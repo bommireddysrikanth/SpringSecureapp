@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,14 +26,9 @@ import org.hibernate.annotations.Type;
 public class Quotation extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "qoutation_id")
-	private int qoutationId;
-
 	private String amount;
 
-	@Column(name = "org_id")
+	@ManyToOne
 	private Organization orgId;
 
 	@Type(type = "text")
@@ -106,14 +102,6 @@ public class Quotation extends Procucev {
 	}
 
 	public Quotation() {
-	}
-
-	public int getQoutationId() {
-		return this.qoutationId;
-	}
-
-	public void setQoutationId(int qoutationId) {
-		this.qoutationId = qoutationId;
 	}
 
 	public String getAmount() {

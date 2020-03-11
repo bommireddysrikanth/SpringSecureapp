@@ -12,7 +12,7 @@ import com.portal.procucev.model.RfqVendor;
 public interface VendorRFQDao extends CrudRepository<RfqVendor, Long> {
 
 	// @Query("select * from rfq_vendor where org_id=?1")
-	List<RfqVendor> findByrfqVendorsId(int organizationId);
+	List<RfqVendor> findById(int organizationId);
 
 	List<RfqVendor> findByOrganization(Organization org);
 }

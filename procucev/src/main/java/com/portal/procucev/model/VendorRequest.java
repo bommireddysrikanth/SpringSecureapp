@@ -18,10 +18,6 @@ public class VendorRequest extends Procucev {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
 	@ManyToOne
 	private VendorCategoryMaster vendorCategory;
 
@@ -30,15 +26,8 @@ public class VendorRequest extends Procucev {
 
 	private Date requestedTs;
 
+	@ManyToOne
 	private OrgStatus status;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public VendorCategoryMaster getVendorCategory() {
 		return vendorCategory;

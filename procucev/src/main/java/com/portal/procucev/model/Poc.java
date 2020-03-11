@@ -15,14 +15,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "poc")
-public class Poc extends Procucev  {
+public class Poc extends Procucev {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "poc_id")
-	private int pocId;
 
 	@Column(name = "address_id")
 	private int addressId;
@@ -40,14 +35,6 @@ public class Poc extends Procucev  {
 
 	public Poc() {
 		super();
-	}
-
-	public int getPocId() {
-		return this.pocId;
-	}
-
-	public void setPocId(int pocId) {
-		this.pocId = pocId;
 	}
 
 	public int getAddressId() {

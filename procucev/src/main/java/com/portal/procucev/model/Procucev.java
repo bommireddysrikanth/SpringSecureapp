@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +16,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class Procucev implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -70,6 +77,14 @@ public class Procucev implements Serializable {
 		this.lastModifiedBy = lastModifiedBy;
 		this.createdTS = createdTS;
 		this.lastModifiedTS = lastModifiedTS;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

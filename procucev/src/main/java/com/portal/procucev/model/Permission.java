@@ -4,38 +4,24 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the permissions database table.
  * 
  */
 @Entity
-@Table(name="permissions")
-@NamedQuery(name="Permission.findAll", query="SELECT p FROM Permission p")
+@Table(name = "permissions")
+@NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p")
 public class Permission extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="permissions_id")
-	private int permissionsId;
-
-	@Column(name="permissions_type")
+	@Column(name = "permissions_type")
 	private String permissionsType;
 
-	//bi-directional many-to-one association to PermissionRole
-	@OneToMany(mappedBy="permission")
+	// bi-directional many-to-one association to PermissionRole
+	@OneToMany(mappedBy = "permission")
 	private List<PermissionRole> permissionRoles;
 
 	public Permission() {
-	}
-
-	public int getPermissionsId() {
-		return this.permissionsId;
-	}
-
-	public void setPermissionsId(int permissionsId) {
-		this.permissionsId = permissionsId;
 	}
 
 	public String getPermissionsType() {

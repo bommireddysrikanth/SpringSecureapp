@@ -1,41 +1,26 @@
 package com.portal.procucev.model;
 
-
 import javax.persistence.*;
 import java.util.List;
-
 
 /**
  * The persistent class for the role database table.
  * 
  */
 @Entity
-@Table(name="role")
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+@Table(name = "role")
+@NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
 public class Role extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="role_id")
-	private int roleId;
-
-	@Column(name="role_type")
+	@Column(name = "role_type")
 	private String roleType;
 
-	//bi-directional many-to-one association to PermissionRole
-	@OneToMany(mappedBy="role")
+	// bi-directional many-to-one association to PermissionRole
+	@OneToMany(mappedBy = "role")
 	private List<PermissionRole> permissionRoles;
 
 	public Role() {
-	}
-
-	public int getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
 	}
 
 	public String getRoleType() {

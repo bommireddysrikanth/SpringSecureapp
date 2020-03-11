@@ -12,12 +12,7 @@ import javax.persistence.*;
 public class PrItem extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "pr_items_id")
-	private int prItemsId;
-
-	@Column(name = "pr_id")
+	@ManyToOne
 	private PR prId;
 
 	private String description;
@@ -25,17 +20,9 @@ public class PrItem extends Procucev {
 	private long quantity;
 	@Column(name = "unit_of_measures")
 	private long unitofMeasures;
-	
+
 	@ManyToOne
 	private OrgStatus status;
-
-	public int getPrItemsId() {
-		return prItemsId;
-	}
-
-	public void setPrItemsId(int prItemsId) {
-		this.prItemsId = prItemsId;
-	}
 
 	public PR getPrId() {
 		return prId;

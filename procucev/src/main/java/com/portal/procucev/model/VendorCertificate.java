@@ -18,11 +18,6 @@ public class VendorCertificate extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_certificates_id")
-	private int vendorCertificatesId;
-
 	@Column(name = "certificate_type")
 	private String certificateType;
 
@@ -34,14 +29,6 @@ public class VendorCertificate extends Procucev {
 
 	public VendorCertificate() {
 		super();
-	}
-
-	public int getVendorCertificatesId() {
-		return this.vendorCertificatesId;
-	}
-
-	public void setVendorCertificatesId(int vendorCertificatesId) {
-		this.vendorCertificatesId = vendorCertificatesId;
 	}
 
 	public String getCertificateType() {

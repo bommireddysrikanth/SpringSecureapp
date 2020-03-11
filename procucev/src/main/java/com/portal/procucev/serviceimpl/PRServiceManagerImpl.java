@@ -60,12 +60,12 @@ public class PRServiceManagerImpl implements PRServiceManager {
 	@Override
 	public PR getPRbyID(PR pr) {
 
-		PR prdetails = prDaoManager.findByOrgAndPrId(pr.getOrg(), pr.getPrId());
+		PR prdetails = prDaoManager.findByOrgAndId(pr.getOrg(), pr.getId());
 
 		if (prdetails == null) {
 
 			throw new AppException(HttpStatus.NOT_FOUND.value(),
-					String.format(ApplicationConstants.PR_NOT_FOUND, pr.getPrId()),
+					String.format(ApplicationConstants.PR_NOT_FOUND, pr.getId()),
 					ApplicationConstants.SERVICE_LEVEL_EXCEPTION, ApplicationConstants.FAILURE);
 		}
 

@@ -14,12 +14,7 @@ public class ClientDocuments extends Procucev {
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "client_document_id")
-	private int clientDocumentId;
 }

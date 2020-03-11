@@ -1,7 +1,5 @@
 package com.portal.procucev.model;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,11 +18,6 @@ public class VendorDocument extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_documents_id")
-	private int vendorDocumentsId;
-
 	@Column(name = "file_name")
 	private String fileName;
 
@@ -35,13 +28,6 @@ public class VendorDocument extends Procucev {
 	@Column(name = "vendor_document_types")
 	private String vendorDocumentTypes;
 
-	public int getVendorDocumentsId() {
-		return this.vendorDocumentsId;
-	}
-
-	public void setVendorDocumentsId(int vendorDocumentsId) {
-		this.vendorDocumentsId = vendorDocumentsId;
-	}
 
 	public String getVendorDocumentTypes() {
 		return this.vendorDocumentTypes;

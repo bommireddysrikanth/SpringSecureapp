@@ -8,9 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -33,20 +30,16 @@ public class Organization extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "organization_id")
-	private int organizationId;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Column(name = "id")
+//	private int organizationId;
 
 	@Column(name = "GSTIN")
 	private String gstin;
 
 	@Transient
-	@Lob
 	private MultipartFile file;
-
-	@Lob
-	private byte[] files;
 
 	@Column(name = "organization_name")
 	private String organizationName;
@@ -59,78 +52,70 @@ public class Organization extends Procucev {
 	@Column(name = "PAN")
 	private String pan;
 
+	@Lob
+	private byte[] files;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "org_manager", joinColumns = {
-			@JoinColumn(referencedColumnName = "organization_id") }, inverseJoinColumns = {
-					@JoinColumn(referencedColumnName = "ID") })
+	@JoinTable(name = "org_manager", joinColumns = { @JoinColumn(referencedColumnName = "id") }, inverseJoinColumns = {
+			@JoinColumn(referencedColumnName = "id") })
 	private Set<User> categoryManager;
 
 	// bi-directional many-to-one association to OrgBankDetail
 	@OneToMany(targetEntity = OrgBankDetail.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "org_bank_details_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "org_bank_details_fk", referencedColumnName = "id", nullable = false)
 	private List<OrgBankDetail> orgBankDetails;
 
 	@OneToMany(targetEntity = VendorProduct.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendor_product_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "vendor_product_fk", referencedColumnName = "id", nullable = false)
 	private List<VendorProduct> vendorProduct;
 
 	@OneToMany(targetEntity = OrgBranch.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "org_branches_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "org_branches_fk", referencedColumnName = "id", nullable = false)
 	private List<OrgBranch> orgBranches;
 
 	@OneToMany(targetEntity = Poc.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "poc_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "poc_fk", referencedColumnName = "id", nullable = false)
 	private List<Poc> poc;
 
 	@OneToMany(targetEntity = VendorClientReference.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendor_client_references_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "vendor_client_references_fk", referencedColumnName = "id", nullable = false)
 	private List<VendorClientReference> clientReference;
 
 	@OneToMany(targetEntity = VendorCertificate.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendor_certificates_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "vendor_certificates_fk", referencedColumnName = "id", nullable = false)
 	private List<VendorCertificate> certificates;
 
 	@OneToMany(targetEntity = VendorDocument.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendor_documents_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "vendor_documents_fk", referencedColumnName = "id", nullable = false)
 	private List<VendorDocument> documents;
 
 	@OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "address_fk", referencedColumnName = "id", nullable = false)
 	private List<Address> address;
 
 	@ManyToOne
-	@JoinColumn(name = "org_status_id")
 	private OrgStatus orgStatus;
 
 	@ManyToOne
-	@JoinColumn(name = "org_types_id", nullable = false)
 	private OrgType orgType;
 
 	@OneToMany(targetEntity = ClientVerticals.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "client_verticals_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "client_verticals_fk", referencedColumnName = "id", nullable = false)
 	private List<ClientVerticals> clientVerticals;
 
 	@OneToMany(targetEntity = ClientCategories.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "client_categories_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "client_categories_fk", referencedColumnName = "id", nullable = false)
 	private List<ClientCategories> clientCategories;
 
 	@OneToMany(targetEntity = ClientDocuments.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "client_documents_fk", referencedColumnName = "organization_id", nullable = false)
+	@JoinColumn(name = "client_documents_fk", referencedColumnName = "id", nullable = false)
 	private List<ClientDocuments> clientDocuments;
 
 	@Column(name = "license_valid_date")
 	private Date licenseValidDate;
 
-	public int getOrganizationId() {
-		return this.organizationId;
-	}
-
 	public Organization() {
 		super();
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
 	}
 
 	public String getGstin() {
@@ -299,6 +284,14 @@ public class Organization extends Procucev {
 
 	public void setLicenseValidDate(Date licenseValidDate) {
 		this.licenseValidDate = licenseValidDate;
+	}
+
+	public Set<User> getCategoryManager() {
+		return categoryManager;
+	}
+
+	public void setCategoryManager(Set<User> categoryManager) {
+		this.categoryManager = categoryManager;
 	}
 
 }

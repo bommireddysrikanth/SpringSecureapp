@@ -12,42 +12,31 @@ import javax.persistence.*;
 public class UserRole extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_role_id")
-	private int userRoleId;
+	@ManyToOne
+	private Role roleId;
 
-	@Column(name = "role_id")
-	private int roleId;
-
-	@Column(name = "user_id")
-	private int userId;
+	@ManyToOne
+	private User userId;
 
 	public UserRole() {
 	}
 
-	public int getUserRoleId() {
-		return this.userRoleId;
+	public Role getRoleId() {
+		return roleId;
 	}
 
-	public void setUserRoleId(int userRoleId) {
-		this.userRoleId = userRoleId;
-	}
-
-	public int getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(int roleId) {
+	public void setRoleId(Role roleId) {
 		this.roleId = roleId;
 	}
 
-	public int getUserId() {
-		return this.userId;
+	public User getUserId() {
+		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
+
+	
 
 }

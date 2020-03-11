@@ -17,11 +17,6 @@ public class VendorService extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_services_id")
-	private int vendorServicesId;
-
 	private String description;
 
 	@Column(name = "major_catagory_id")
@@ -40,14 +35,6 @@ public class VendorService extends Procucev {
 
 	@Column(name = "sub_catagory_id")
 	private int subCatagoryId;
-
-	public int getVendorServicesId() {
-		return this.vendorServicesId;
-	}
-
-	public void setVendorServicesId(int vendorServicesId) {
-		this.vendorServicesId = vendorServicesId;
-	}
 
 	public String getDescription() {
 		return this.description;

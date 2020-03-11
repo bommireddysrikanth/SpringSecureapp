@@ -22,9 +22,5 @@ public class ClientCategories extends Procucev {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "client_category_id")
-	private int clientCategoryId;
+
 }

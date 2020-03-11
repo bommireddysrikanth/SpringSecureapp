@@ -11,11 +11,6 @@ import javax.persistence.*;
 public class QuotationItem extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "quotation_items_id")
-	private int quotationItemsId;
-
 	private String description;
 	private String brand;
 	private long quantity;
@@ -23,14 +18,6 @@ public class QuotationItem extends Procucev {
 	private long unitofMeasures;
 	private long unitprice;
 	private long totalamount;
-
-	public int getQuotationItemsId() {
-		return quotationItemsId;
-	}
-
-	public void setQuotationItemsId(int quotationItemsId) {
-		this.quotationItemsId = quotationItemsId;
-	}
 
 	public String getDescription() {
 		return description;

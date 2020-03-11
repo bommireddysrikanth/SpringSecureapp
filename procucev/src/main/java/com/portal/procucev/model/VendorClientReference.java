@@ -14,14 +14,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_client_references")
-public class VendorClientReference extends Procucev{
+public class VendorClientReference extends Procucev {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_client_references_id")
-	private int vendorClientReferencesId;
 
 	@Column(name = "business_provided_ts")
 	private String businessProvidedTs;
@@ -61,14 +56,6 @@ public class VendorClientReference extends Procucev{
 
 	public VendorClientReference() {
 		super();
-	}
-
-	public int getVendorClientReferencesId() {
-		return this.vendorClientReferencesId;
-	}
-
-	public void setVendorClientReferencesId(int vendorClientReferencesId) {
-		this.vendorClientReferencesId = vendorClientReferencesId;
 	}
 
 	public String getBusinessProvidedTs() {

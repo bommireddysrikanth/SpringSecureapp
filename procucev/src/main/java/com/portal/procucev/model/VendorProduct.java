@@ -17,23 +17,10 @@ public class VendorProduct extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_product_id")
-	private int vendorProductId;
-
 	private String description;
 
 	@Column(name = "hsn_code")
 	private int hsnCode;
-
-	public int getVendorProductId() {
-		return this.vendorProductId;
-	}
-
-	public void setVendorProductId(int vendorProductId) {
-		this.vendorProductId = vendorProductId;
-	}
 
 	public String getDescription() {
 		return this.description;

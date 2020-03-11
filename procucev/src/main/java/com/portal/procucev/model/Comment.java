@@ -11,25 +11,12 @@ import javax.persistence.*;
 public class Comment extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "comments_id")
-	private int commentsId;
-
 	private String description;
 
 	@ManyToOne
 	private Rfq rfq;
 
 	public Comment() {
-	}
-
-	public int getCommentsId() {
-		return this.commentsId;
-	}
-
-	public void setCommentsId(int commentsId) {
-		this.commentsId = commentsId;
 	}
 
 	public String getDescription() {

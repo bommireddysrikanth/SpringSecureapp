@@ -11,11 +11,6 @@ import javax.persistence.*;
 public class RfqItem extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "rfq_items_id")
-	private int rfqItemsId;
-
 	@ManyToOne
 	private Rfq rfq;
 
@@ -28,14 +23,6 @@ public class RfqItem extends Procucev {
 	private long totalamount;
 
 	public RfqItem() {
-	}
-
-	public int getRfqItemsId() {
-		return this.rfqItemsId;
-	}
-
-	public void setRfqItemsId(int rfqItemsId) {
-		this.rfqItemsId = rfqItemsId;
 	}
 
 	public String getDescription() {

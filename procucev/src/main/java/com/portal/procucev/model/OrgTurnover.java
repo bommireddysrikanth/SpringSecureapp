@@ -20,36 +20,22 @@ import javax.persistence.Table;
 public class OrgTurnover extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "org_turnover_id")
-	private int orgTurnoverId;
-
 	private String amount;
 
 	private int currency;
 
-	@Column(name = "currency_master_id")
+	@ManyToOne
 	private CurrencyMaster currencyMasterId;
 
-	@Column(name = "currency_unit_id")
+	@ManyToOne
 	private CurrencyUnit currencyUnitId;
 
 	@ManyToOne
-	@JoinColumn(name = "organization_id")
 	private Organization organization;
 
 	private int year;
 
 	public OrgTurnover() {
-	}
-
-	public int getOrgTurnoverId() {
-		return this.orgTurnoverId;
-	}
-
-	public void setOrgTurnoverId(int orgTurnoverId) {
-		this.orgTurnoverId = orgTurnoverId;
 	}
 
 	public String getAmount() {

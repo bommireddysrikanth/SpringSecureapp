@@ -19,11 +19,6 @@ public class OrgType extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "org_types_id")
-	private int orgTypesId;
-
 	private String description;
 
 	@Column(name = "type_name")
@@ -31,14 +26,6 @@ public class OrgType extends Procucev {
 
 	public OrgType() {
 		super();
-	}
-
-	public int getOrgTypesId() {
-		return this.orgTypesId;
-	}
-
-	public void setOrgTypesId(int orgTypesId) {
-		this.orgTypesId = orgTypesId;
 	}
 
 	public String getDescription() {

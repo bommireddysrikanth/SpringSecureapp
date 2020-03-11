@@ -12,11 +12,6 @@ import javax.persistence.*;
 public class Answer extends Procucev {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "answers_id")
-	private int answersId;
-
 	private String answer;
 
 	@Column(name = "answers_by")
@@ -26,14 +21,6 @@ public class Answer extends Procucev {
 	private Query query;
 
 	public Answer() {
-	}
-
-	public int getAnswersId() {
-		return this.answersId;
-	}
-
-	public void setAnswersId(int answersId) {
-		this.answersId = answersId;
 	}
 
 	public String getAnswer() {

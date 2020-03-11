@@ -1,10 +1,6 @@
 package com.portal.procucev.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,11 +14,6 @@ public class VendorCategoryMatrix extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_category_matrix_id")
-	private int vendorCategoryMatrixId;
-
 	@ManyToOne
 	private VendorCategoryMaster vendorCategoryMasterId;
 
@@ -31,14 +22,6 @@ public class VendorCategoryMatrix extends Procucev {
 
 	public VendorCategoryMatrix() {
 		super();
-	}
-
-	public int getVendorCategoryMatrixId() {
-		return this.vendorCategoryMatrixId;
-	}
-
-	public void setVendorCategoryMatrixId(int vendorCategoryMatrixId) {
-		this.vendorCategoryMatrixId = vendorCategoryMatrixId;
 	}
 
 	public VendorCategoryMaster getVendorCategoryMasterId() {

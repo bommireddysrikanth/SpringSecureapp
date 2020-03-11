@@ -1,6 +1,5 @@
 package com.portal.procucev.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +16,6 @@ import javax.persistence.Table;
 public class Address extends Procucev {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "address_id")
-	private int addressId;
 
 	@Column(name = "address_first")
 	private String addressFirst;
@@ -45,14 +39,6 @@ public class Address extends Procucev {
 
 	public Address() {
 		super();
-	}
-
-	public int getAddressId() {
-		return this.addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
 	}
 
 	public String getAddressFirst() {

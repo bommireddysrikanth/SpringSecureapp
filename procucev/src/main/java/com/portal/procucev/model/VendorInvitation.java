@@ -17,11 +17,6 @@ public class VendorInvitation extends Procucev {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "vendor_invitation_id")
-	private int vendorInvitationId;
-
 	@Column(name = "`invitation sent_by`")
 	private String invitation_sentBy;
 
@@ -32,14 +27,6 @@ public class VendorInvitation extends Procucev {
 	private String linkExpiryTs;
 
 	private String status;
-
-	public int getVendorInvitationId() {
-		return this.vendorInvitationId;
-	}
-
-	public void setVendorInvitationId(int vendorInvitationId) {
-		this.vendorInvitationId = vendorInvitationId;
-	}
 
 	public String getInvitation_sentBy() {
 		return this.invitation_sentBy;

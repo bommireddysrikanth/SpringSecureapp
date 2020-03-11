@@ -15,28 +15,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "org_branches")
-public class OrgBranch extends Procucev{
+public class OrgBranch extends Procucev {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "org_branches_id")
-	private int orgBranchesId;
 
 	@Column(name = "bank_name")
 	private String bankName;
 
 	public OrgBranch() {
 		super();
-	}
-
-	public int getOrgBranchesId() {
-		return this.orgBranchesId;
-	}
-
-	public void setOrgBranchesId(int orgBranchesId) {
-		this.orgBranchesId = orgBranchesId;
 	}
 
 	public String getBankName() {
