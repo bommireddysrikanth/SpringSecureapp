@@ -2,9 +2,6 @@ package com.portal.procucev.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
@@ -27,7 +24,6 @@ public class VendorDocument extends Procucev {
 
 	@Column(name = "vendor_document_types")
 	private String vendorDocumentTypes;
-
 
 	public String getVendorDocumentTypes() {
 		return this.vendorDocumentTypes;

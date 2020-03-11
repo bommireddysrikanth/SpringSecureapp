@@ -4,15 +4,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +33,7 @@ import com.portal.procucev.model.Query;
 import com.portal.procucev.model.Quotation;
 import com.portal.procucev.model.RFQDocument;
 import com.portal.procucev.model.Rfq;
+import com.portal.procucev.model.RfqItem;
 import com.portal.procucev.service.RFQService;
 import com.portal.procucev.utils.ApplicationConstants;
 
@@ -38,9 +48,12 @@ import com.portal.procucev.utils.ApplicationConstants;
 @RequestMapping("/rest/rfq")
 public class RFQController {
 	@Autowired
-	private RFQService rfqService;
+	RFQService rfqService;
 
-	private static Logger logger = LoggerFactory.getLogger(RFQController.class);
+	@Autowired
+	EntityManagerFactory entityManagerFactory;
+
+	static Logger logger = LoggerFactory.getLogger(RFQController.class);
 
 	/**
 	 * Method to create an RFQ
@@ -54,7 +67,7 @@ public class RFQController {
 	@PostMapping(value = "/createRfq", consumes = { "multipart/form-data" })
 	public ResponseEntity<?> createRfq(@RequestParam("model") String rfqRequest,
 			@RequestParam(name = "type", required = false) String type,
-			@RequestParam(name = "file", required = false) MultipartFile inputfile) throws IOException {
+			@RequestParam(name = "file", required = false) MultipartFile inputfile) throws Exception {
 		logger.info("entered to create an rfq with a given request");
 		ObjectMapper mapper = new ObjectMapper();
 		Rfq inputRfqRequest = new Rfq();
@@ -84,13 +97,13 @@ public class RFQController {
 	/**
 	 * Method to fetch an RFQ by an ID
 	 * 
-	 * @param id
+	 * @param rfq
 	 * @return
 	 * @throws Exception
 	 */
-	@PostMapping(value = "/fetchRfqById/{id}")
-	public ResponseEntity<?> fetchRfqById(@PathVariable("id") int id) throws Exception {
-		List<Rfq> status = rfqService.fetchRfqById(id);
+	@PostMapping(value = "/fetchRfqById")
+	public ResponseEntity<?> fetchRfqById(@RequestBody Rfq rfq) {
+		List<Rfq> status = rfqService.fetchRfqById(rfq);
 		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
 
@@ -106,10 +119,29 @@ public class RFQController {
 	@PostMapping(value = "/rfqSearch")
 	public ResponseEntity<?> createRfq(@RequestParam(name = "id", required = false) Integer id,
 			@RequestParam(name = "name", required = false) String name,
-			@RequestParam(name = "time", required = false) String time) throws IOException {
-		List<Rfq> list = new ArrayList<Rfq>();
-		list = rfqService.rfqSearch(id, name, time);
-		return new ResponseEntity<>(list, HttpStatus.OK);
+			@RequestParam(name = "time", required = false) String time) {
+		List<Predicate> predicates = new ArrayList<>();
+		EntityManager em = entityManagerFactory.createEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Rfq> criteriaQuery = builder.createQuery(Rfq.class);
+		Root<Rfq> root = criteriaQuery.from(Rfq.class);
+		Join<Rfq, List<RfqItem>> resource = root.join("rfqItem");
+
+		predicates.add(builder.equal(resource.get("brand"), time));
+
+		predicates.add(builder.equal(root.get("rfqId"), id));
+
+		// query itself
+		criteriaQuery.select(root).where(predicates.toArray(new Predicate[] {}));
+		// execute query and do something with result
+		List<Rfq> resultList = em.createQuery(criteriaQuery).getResultList();
+		if (!CollectionUtils.isEmpty(resultList)) {
+			return new ResponseEntity<>(resultList, HttpStatus.OK);
+		} else {
+			throw new AppException(HttpStatus.OK.value(), ApplicationConstants.NO_DATA_FOUND,
+					ApplicationConstants.BUSSINESS_EXCEPTION, ApplicationConstants.FAILURE);
+		}
+
 	}
 
 	/**
@@ -119,9 +151,25 @@ public class RFQController {
 	 * @throws Exception
 	 */
 	@GetMapping("/fetchRfq")
-	public ResponseEntity<?> fetchRfq() throws Exception {
+	public ResponseEntity<?> fetchRfq() {
 		List<Rfq> status = rfqService.fetchRfq();
 		return new ResponseEntity<>(status, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to delete an RFQ
+	 * 
+	 * @return
+	 */
+	@GetMapping("/deleteRfq")
+	public ResponseEntity<?> deleteRfq(@RequestBody List<Rfq> rfq) {
+		boolean status = rfqService.deleteRfq(rfq);
+		String statusCode = status ? String.valueOf(ApplicationConstants.SUCCESS)
+				: String.valueOf(ApplicationConstants.FAILURE);
+		String msg = status ? String.format(ApplicationConstants.DELETE_RFQ, "")
+				: String.format(ApplicationConstants.RFQ_NOT_EXISTS, "");
+		AppException response = new AppException(statusCode, msg, null, null);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	/**
@@ -131,7 +179,7 @@ public class RFQController {
 	 * @throws Exception
 	 */
 	@GetMapping("/quoteHistory")
-	public ResponseEntity<?> quoteHistory() throws Exception {
+	public ResponseEntity<?> quoteHistory() {
 		List<Quotation> status = rfqService.fetchQuotes();
 		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
@@ -177,8 +225,7 @@ public class RFQController {
 	 * @throws Exception
 	 */
 	@PostMapping(value = "/raiseQuery")
-	public ResponseEntity<?> raiseQuery(@RequestParam(name = "raiseQuery", required = false) String raiseQuery)
-			throws Exception {
+	public ResponseEntity<?> raiseQuery(@RequestParam(name = "raiseQuery", required = false) String raiseQuery) {
 		if (!StringUtils.isEmpty(raiseQuery)) {
 			Rfq inputRfqRequest = new Rfq();
 			List<Query> querList = new ArrayList<Query>();
@@ -197,6 +244,18 @@ public class RFQController {
 			throw new AppException(HttpStatus.OK.value(), ApplicationConstants.NO_DATA_FOUND,
 					ApplicationConstants.BUSSINESS_EXCEPTION, ApplicationConstants.FAILURE);
 		}
+	}
+
+	/**
+	 * Method to read an xl
+	 * 
+	 * @param file
+	 * @return
+	 */
+	@GetMapping(value = "/xlData", consumes = "multipart/form-data")
+	public ResponseEntity<?> getxlData(@RequestParam MultipartFile file) {
+		rfqService.xlRead(file);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

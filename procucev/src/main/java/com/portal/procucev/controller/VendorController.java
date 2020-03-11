@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,10 +37,10 @@ import com.portal.procucev.utils.ApplicationConstants;
 @RequestMapping("/rest/vendor")
 public class VendorController {
 
-	private static Logger logger = LoggerFactory.getLogger(VendorController.class);
+	static Logger logger = LoggerFactory.getLogger(VendorController.class);
 
 	@Autowired
-	private VendorService vendorService;
+	VendorService vendorService;
 
 	/**
 	 * Method to create a new vendor
@@ -109,8 +110,48 @@ public class VendorController {
 	public ResponseEntity<?> fetchVendors() throws AppException {
 		logger.info("enters to fetch the vendor list");
 		List<Organization> vendorList = vendorService.fetchAllVendors();
-
 		return new ResponseEntity<>(vendorList, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to delete the organizations
+	 * 
+	 * @param organization
+	 * @return
+	 */
+	@PostMapping("/deleteVendors")
+	public ResponseEntity<?> deleteVendors(@RequestBody List<Organization> organization) {
+		boolean status = vendorService.deleteVendor(organization);
+
+		String statusCode = status ? String.valueOf(ApplicationConstants.SUCCESS)
+				: String.valueOf(ApplicationConstants.FAILURE);
+		String msg = status ? String.format(ApplicationConstants.DELETE_VENDOR, "")
+				: String.format(ApplicationConstants.DELETE_VENDOR_NOT_EXISTS, "");
+		AppException response = new AppException(statusCode, msg, null, null);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
+
+	/**
+	 * Method to fetch the currency master details
+	 * 
+	 * @return
+	 */
+	@GetMapping("/currencyMaster")
+	public ResponseEntity<?> currencyMasterList() {
+		List<String> currencyMasterList = vendorService.currencyMasteList();
+		return new ResponseEntity<>(currencyMasterList, HttpStatus.OK);
+	}
+
+	/**
+	 * Method to fetch the unit details
+	 * 
+	 * @return
+	 */
+	@GetMapping("/unitMaster")
+	public ResponseEntity<?> unitMasterList() {
+		List<String> currencyUnitist = vendorService.currencyUnitList();
+		return new ResponseEntity<>(currencyUnitist, HttpStatus.OK);
+	}
+
 }

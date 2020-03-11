@@ -2,12 +2,19 @@ package com.portal.procucev.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.portal.procucev.model.Quotation;
 import com.portal.procucev.model.Rfq;
 
+/**
+ * 
+ * @author venu gopal
+ *
+ */
 public interface RFQService {
 	/**
-	 * Method to create a rfq
+	 * Function call to create a rfq
 	 * 
 	 * @param inputRfqRequest
 	 * @return
@@ -15,22 +22,22 @@ public interface RFQService {
 	boolean rfqCreation(Rfq inputRfqRequest);
 
 	/**
-	 * Method to fetch the rfq details by an ID
+	 * Function call to fetch the rfq details by an ID
 	 * 
-	 * @param id
+	 * @param rfq
 	 * @return
 	 */
-	List<Rfq> fetchRfqById(int id);
+	List<Rfq> fetchRfqById(Rfq rfq);
 
 	/**
-	 * Method to return all the RFQ's
+	 * Function call to return all the RFQ's
 	 * 
 	 * @return
 	 */
 	List<Rfq> fetchRfq();
 
 	/**
-	 * Method to return rfq information based on ID or NAME or TIME
+	 * Function call to return rfq information based on ID or NAME or TIME
 	 * 
 	 * @param id
 	 * @param name
@@ -40,7 +47,7 @@ public interface RFQService {
 	List<Rfq> rfqSearch(Integer id, String name, String time);
 
 	/**
-	 * Method to upload a quote for a RFQ
+	 * Function call to upload a quote for a RFQ
 	 * 
 	 * @param inputRfqRequest
 	 * @return
@@ -48,7 +55,7 @@ public interface RFQService {
 	boolean uploadQuote(Rfq inputRfqRequest);
 
 	/**
-	 * Method to fetch all the Quotes
+	 * Function call to fetch all the Quotes
 	 * 
 	 * @return
 	 */
@@ -56,11 +63,27 @@ public interface RFQService {
 	List<Quotation> fetchQuotes();
 
 	/**
-	 * Method to create a query for a RFQ
+	 * Function call to create a query for a RFQ
 	 * 
 	 * @param inputRfqRequest
 	 * @return
 	 */
 	boolean raiseQuery(Rfq inputRfqRequest);
+
+	/**
+	 * Function call to delete an RFQ
+	 * 
+	 * @param rfq
+	 * 
+	 * @return
+	 */
+	boolean deleteRfq(List<Rfq> rfq);
+
+	/**
+	 * Function call to read an xl file
+	 * 
+	 * @param file
+	 */
+	void xlRead(MultipartFile file);
 
 }

@@ -1,14 +1,20 @@
 package com.portal.procucev.serviceimpl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.portal.procucev.customexception.AppException;
 import com.portal.procucev.dao.QuotationsDao;
@@ -26,12 +32,12 @@ import com.portal.procucev.utils.ApplicationConstants;
 @Service
 public class RFQServiceImpl implements RFQService {
 	@Autowired
-	private RFQDao rfqDao;
+	RFQDao rfqDao;
 
 	@Autowired
-	private QuotationsDao quotationsDao;
+	QuotationsDao quotationsDao;
 
-	private static Logger logger = LoggerFactory.getLogger(RFQServiceImpl.class);
+	static Logger logger = LoggerFactory.getLogger(RFQServiceImpl.class);
 
 	/**
 	 * Method to create an rfq with the input details
@@ -52,8 +58,8 @@ public class RFQServiceImpl implements RFQService {
 	 * Return rfq details based on the ID
 	 */
 	@Override
-	public List<Rfq> fetchRfqById(int id) {
-		List<Rfq> vendorList = rfqDao.findById(id);
+	public List<Rfq> fetchRfqById(Rfq rfq) {
+		List<Rfq> vendorList = rfqDao.findById(rfq.getId());
 		if (!CollectionUtils.isEmpty(vendorList)) {
 			return vendorList;
 		} else {
@@ -153,6 +159,65 @@ public class RFQServiceImpl implements RFQService {
 			return status;
 		}
 		return status;
+	}
+
+	/**
+	 * Method to delete a list of rfq's
+	 */
+	@Override
+	public boolean deleteRfq(List<Rfq> rfq) {
+		boolean status = false;
+		try {
+			rfqDao.delete(rfq);
+			status = true;
+			return status;
+		} catch (Exception e) {
+			return status;
+		}
+	}
+
+	/**
+	 * Method to read an xl
+	 */
+	@Override
+	public void xlRead(MultipartFile file) {
+
+		try {
+
+			// Create Workbook instance holding reference to .xlsx file
+			XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+
+			// Get first/desired sheet from the workbook
+			XSSFSheet sheet = workbook.getSheetAt(0);
+
+			// Iterate through each rows one by one
+			Iterator<Row> rowIterator = sheet.iterator();
+			while (rowIterator.hasNext()) {
+				Row row = rowIterator.next();
+				if (row.getRowNum() == 0) {
+					continue;
+				}
+				// For each row, iterate through all the columns
+				Iterator<Cell> cellIterator = row.cellIterator();
+
+				while (cellIterator.hasNext()) {
+					Cell cell = cellIterator.next();
+					// Check the cell type and format accordingly
+					switch (cell.getCellType()) {
+					case Cell.CELL_TYPE_NUMERIC:
+						System.out.print(cell.getNumericCellValue());
+						break;
+					case Cell.CELL_TYPE_STRING:
+						System.out.print(cell.getStringCellValue());
+						break;
+					}
+				}
+				System.out.println("");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

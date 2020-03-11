@@ -64,7 +64,7 @@ public class RFQControllerTest {
 		rfq.setId(1);
 		List<Rfq> status = new ArrayList<Rfq>();
 
-		when(rfqService.fetchRfqById(1)).thenReturn(status);
+		// when(rfqService.fetchRfqById(1)).thenReturn(status);
 		mockMvc.perform(MockMvcRequestBuilders.post("/rest/fetchRfqById/{id}", 1)).andReturn();
 	}
 

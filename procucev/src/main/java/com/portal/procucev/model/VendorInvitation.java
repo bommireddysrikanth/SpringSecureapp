@@ -2,10 +2,8 @@ package com.portal.procucev.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * The persistent class for the vendor_invitation database table.
@@ -16,6 +14,18 @@ import javax.persistence.Table;
 public class VendorInvitation extends Procucev {
 
 	private static final long serialVersionUID = 1L;
+
+	@Column(name = "org_name")
+	private String orgName;
+
+	@Column(name = "phone")
+	private String phone;
+
+	@Column(name = "email")
+	private String email;
+
+	@Transient
+	private String token;
 
 	@Column(name = "`invitation sent_by`")
 	private String invitation_sentBy;
@@ -58,6 +68,38 @@ public class VendorInvitation extends Procucev {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

@@ -54,7 +54,7 @@ public class Organization extends Procucev {
 
 	@Lob
 	private byte[] files;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "org_manager", joinColumns = { @JoinColumn(referencedColumnName = "id") }, inverseJoinColumns = {
 			@JoinColumn(referencedColumnName = "id") })
@@ -88,6 +88,10 @@ public class Organization extends Procucev {
 	@OneToMany(targetEntity = VendorDocument.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "vendor_documents_fk", referencedColumnName = "id", nullable = false)
 	private List<VendorDocument> documents;
+
+	@OneToMany(targetEntity = OrgTurnover.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "org_turnover_fk", referencedColumnName = "id", nullable = false)
+	private List<OrgTurnover> orgTurnOver;
 
 	@OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_fk", referencedColumnName = "id", nullable = false)
@@ -292,6 +296,14 @@ public class Organization extends Procucev {
 
 	public void setCategoryManager(Set<User> categoryManager) {
 		this.categoryManager = categoryManager;
+	}
+
+	public List<OrgTurnover> getOrgTurnOver() {
+		return orgTurnOver;
+	}
+
+	public void setOrgTurnOver(List<OrgTurnover> orgTurnOver) {
+		this.orgTurnOver = orgTurnOver;
 	}
 
 }

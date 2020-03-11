@@ -16,5 +16,11 @@ public class ApplicationConstants {
 	public static final String DATABASE_EXCEPTION = "Database Level Exception";
 	public static final String SERVICE_LEVEL_EXCEPTION = "Service Level Exception";
 	public static final String PR_NOT_FOUND = "PR not found with ID %s";
+	public static final String DELETE_RFQ = "RFQ(s) deleted successfully..";
+	public static final String RFQ_NOT_EXISTS = "RFQ(s) doesn't exists!!!";
+	public static final String MAIL_SENT_SUCCESS = "Mail sent successfully..";
+	public static final String MAIL_SENT_UNSUCCESS = "Unable to send the mail. Please check the mail credentials..";
+	public static final String DELETE_VENDOR = "Deleted vendor(s) successfully..";
+	public static final String DELETE_VENDOR_NOT_EXISTS = "Delete vendor(s) unsuccessful..";
 
 }

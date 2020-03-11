@@ -1,7 +1,8 @@
 package com.portal.procucev.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the currency_units database table.
