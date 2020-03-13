@@ -1,5 +1,7 @@
 package com.portal.procucev.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
@@ -24,7 +26,17 @@ public class Query extends Procucev {
 	private QueryType querytype;
 
 	private String questions;
-
+    
+	@OneToMany(targetEntity = VendorprocucevDocument.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "vendor_pr_documents_fk", referencedColumnName = "id", nullable = false)
+	private List<VendorprocucevDocument> vendorprocucevdocuments;
+	
+	
+	@OneToMany(targetEntity = VendorprocucevDocument.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "Query_pr_documents_fk", referencedColumnName = "id", nullable = false)
+	private List<ClinetprocucevDocument> clientprocucevdocuments;
+	
+	
 	@ManyToOne
 	private User user;
 

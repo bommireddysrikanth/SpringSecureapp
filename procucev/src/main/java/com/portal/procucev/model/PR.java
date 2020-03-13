@@ -38,6 +38,28 @@ public class PR extends Procucev {
 
 	@ManyToMany
 	private List<PrItem> pritems;
+	
+	@OneToMany(targetEntity = Rfq.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "pr_rfq_fk", referencedColumnName = "id", nullable = false)
+	private List<Rfq> RFQ;
+	
+	
+
+	public List<PrItem> getPritems() {
+		return pritems;
+	}
+
+	public void setPritems(List<PrItem> pritems) {
+		this.pritems = pritems;
+	}
+
+	public List<Rfq> getRFQ() {
+		return RFQ;
+	}
+
+	public void setRFQ(List<Rfq> rFQ) {
+		RFQ = rFQ;
+	}
 
 	public PR() {
 	}

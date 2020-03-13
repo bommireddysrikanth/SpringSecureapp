@@ -38,6 +38,8 @@ public class Procucev implements Serializable {
 	public Procucev() {
 		super();
 	}
+	
+
 
 	public String getCreatedBy() {
 		return createdBy;
@@ -71,20 +73,24 @@ public class Procucev implements Serializable {
 		this.lastModifiedTS = lastModifiedTS;
 	}
 
-	public Procucev(String createdBy, String lastModifiedBy, Date createdTS, Date lastModifiedTS) {
-		super();
-		this.createdBy = createdBy;
-		this.lastModifiedBy = lastModifiedBy;
-		this.createdTS = createdTS;
-		this.lastModifiedTS = lastModifiedTS;
-	}
-
+	
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Procucev [id=" + id + ", createdBy=" + createdBy + ", lastModifiedBy=" + lastModifiedBy + ", createdTS="
+				+ createdTS + ", lastModifiedTS=" + lastModifiedTS + ", getCreatedBy()=" + getCreatedBy()
+				+ ", getLastModifiedBy()=" + getLastModifiedBy() + ", getCreatedTS()=" + getCreatedTS()
+				+ ", getLastModifiedTS()=" + getLastModifiedTS() + ", getId()=" + getId() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }

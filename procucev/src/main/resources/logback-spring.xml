@@ -11,7 +11,7 @@
 
 	<appender name="FileAppender"
 		class="ch.qos.logback.core.FileAppender">
-		<file>e:/Procucev_Applicaton_Profile.log</file>
+		<file>C:\New folder\Procucev_Applicaton_Profile.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>

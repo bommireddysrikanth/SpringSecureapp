@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.portal.procucev.customexception.AppException;
 import com.portal.procucev.model.Organization;
 import com.portal.procucev.model.PR;
+import com.portal.procucev.model.Query;
 import com.portal.procucev.service.CategoryManagerService;
+import com.portal.procucev.utils.ApplicationConstants;
 
 /**
  * @author jaswanth.vasadhi
@@ -44,4 +46,34 @@ public class CategoryManagerController {
 		return new ResponseEntity<>(prList, HttpStatus.OK);
 
 	}
+	
+	@PostMapping(value = "/getPRAcceptORReject")
+	public ResponseEntity<?> getPRAcceptORReject(@RequestBody PR pr) throws AppException {
+
+		boolean prList = categoryManagerService.getPRAcceptORReject(pr);
+
+		String statusCode = prList ? String.valueOf(ApplicationConstants.SUCCESS)
+				: String.valueOf(ApplicationConstants.FAILURE);
+		String msg = prList ? String.format(ApplicationConstants.PR_Accepted, "")
+				: String.format(ApplicationConstants.PR_Accepted, "");
+		AppException response = new AppException(statusCode, msg, null, null);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+		
+	}
+	
+	@PostMapping(value = "/CreateQuery")
+	public ResponseEntity<?> CreateQuery(@RequestBody Query query) throws AppException {
+
+		boolean prList = categoryManagerService.CreateQuery(query);
+
+		String statusCode = prList ? String.valueOf(ApplicationConstants.SUCCESS)
+				: String.valueOf(ApplicationConstants.FAILURE);
+		String msg = prList ? String.format(ApplicationConstants.Query, "")
+				: String.format(ApplicationConstants.Query, "");
+		AppException response = new AppException(statusCode, msg, null, null);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+		
+	}
+	
+	
 }

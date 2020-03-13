@@ -22,5 +22,7 @@ public class ApplicationConstants {
 	public static final String MAIL_SENT_UNSUCCESS = "Unable to send the mail. Please check the mail credentials..";
 	public static final String DELETE_VENDOR = "Deleted vendor(s) successfully..";
 	public static final String DELETE_VENDOR_NOT_EXISTS = "Delete vendor(s) unsuccessful..";
+	public static final String Query = "query crated successful";
+	public static final String PR_Accepted = "Pr accepted successfully";
 
 }

@@ -22,6 +22,9 @@ public class RfqItem extends Procucev {
 	private long unitprice;
 	private long totalamount;
 
+	
+	
+	
 	public RfqItem() {
 	}
 

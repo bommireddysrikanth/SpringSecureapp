@@ -31,4 +31,6 @@ public interface PRDaoManager extends ProcucevDao<PR, Serializable> {
 
 	 List<PR> findByStatus(OrgStatus status);
 
+	List<PR> findById(int id);
+
 }
